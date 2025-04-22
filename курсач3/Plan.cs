@@ -8,7 +8,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace курсач3
 {
-    internal class Plan
+    public class Plan
     {
         public string name;
         public int goalAmount;

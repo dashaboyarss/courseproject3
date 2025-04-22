@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace курсач3
 {
-    internal class Payments :Plan
+    public class Payments :Plan
     {
         //public int time;
         //public double paymentAmount;

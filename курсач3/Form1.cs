@@ -15,8 +15,8 @@ namespace курсач3
     public partial class Form1 : Form
     {
         bool isCorrect = true; //флаг, проверяющий корректность всех введенных данных
-        Payments planPayments;
-        Period planPeriod;
+        public static Payments planPayments;
+        public static Period planPeriod;
         int targetSum;
         int startSum;
         double investmentPerCent;
@@ -24,6 +24,8 @@ namespace курсач3
         int targetPeriod;
         double inflation;
         double paymentAmount;
+
+        
 
         int countPanel = 0;
 
@@ -363,15 +365,22 @@ namespace курсач3
                 ws.Cell($"K1").Value = "Сумма регулярных взносов";
                 ws.Cell($"L1").Value = "Количество взносов";
                 wbook.SaveAs("simple.xlsx");
+
+                
             }
             using (wbook = new XLWorkbook(filePath))
             {
                 var ws = wbook.Worksheet(1);
                 for (int i = 2; i < 100; i++)
                 {
+                    if (ws.Cell($"A{i}").Value.ToString() == planPeriod.name.ToString())
+                    {
+                        MessageBox.Show("План с заданным именем уже существует!\nУкажите уникальное имя плана");
+                        break;
+                    }
                     if (ws.Cell($"A{i}").IsEmpty())
                     {
-                        ws.Cell($"A{i}").Value = planPeriod.Name;
+                        ws.Cell($"A{i}").Value = planPeriod.name.ToString();
                         ws.Cell($"B{i}").Value = planPeriod.GoalAmount.ToString();
                         ws.Cell($"C{i}").Value = planPeriod.StartAmount.ToString();
                         ws.Cell($"D{i}").Value = planPeriod.Frequency.ToString();
@@ -383,6 +392,8 @@ namespace курсач3
                         ws.Cell($"J{i}").Value = planPeriod.investIncome.ToString();
                         ws.Cell($"K{i}").Value = planPeriod.PaymentAmount.ToString();
                         ws.Cell($"L{i}").Value = planPeriod.countPayments.ToString();
+
+                        
                         break;
                     }
                 }
@@ -416,9 +427,14 @@ namespace курсач3
                 var ws = wbook.Worksheet(1);
                 for (int i = 2; i < 100; i++)
                 {
-                    if (ws.Cell($"A{i}").IsEmpty())
+                    if (ws.Cell($"A{i}").Value.ToString() == planPayments.name.ToString())
                     {
-                        ws.Cell($"A{i}").Value = planPayments.Name;
+                        MessageBox.Show("План с заданным именем уже существует!\nУкажите уникальное имя плана");
+                        break;
+                    }
+                    else if (ws.Cell($"A{i}").IsEmpty())
+                    {
+                        ws.Cell($"A{i}").Value = planPayments.name.ToString();
                         ws.Cell($"B{i}").Value = planPayments.GoalAmount.ToString();
                         ws.Cell($"C{i}").Value = planPayments.StartAmount.ToString();
                         ws.Cell($"D{i}").Value = planPayments.Frequency.ToString();
@@ -430,6 +446,8 @@ namespace курсач3
                         ws.Cell($"J{i}").Value = planPayments.investIncome.ToString();
                         ws.Cell($"K{i}").Value = planPayments.paymentAmount.ToString();
                         ws.Cell($"L{i}").Value = planPayments.countPayments.ToString();
+
+
                         break;
                     }
                 }
@@ -495,7 +513,7 @@ namespace курсач3
             newPanel.Controls.Add(progressBar);
             this.tabPage1.Controls.Add(progressBar);
 
-            Button button = AddButton(x, y);
+            Button button = AddButton(x, y, plan);
             newPanel.Controls.Add(button);
             this.tabPage1.Controls.Add(button);
 
@@ -504,23 +522,32 @@ namespace курсач3
             this.tabPage1.Controls.Add(newPanel);
         }
 
-        public Button AddButton(int x, int y)
+        public Button AddButton(int x, int y, string plan)
         {
             Button button = new Button();
             button.Text = "Открыть";
             button.Size = new System.Drawing.Size(70, 30);
             button.Location = new System.Drawing.Point(x + 45, y + 200);
-            button.Click += new EventHandler(Button_Click);
+
+            if (plan == "period") 
+                button.Click += new EventHandler(Button_Click_Period);
+            else
+                button.Click += new EventHandler(Button_Click_Payments);
 
             return button;
         }
 
-        private void Button_Click(object sender, EventArgs e)
+        private void Button_Click_Period(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Form2 form2 = new Form2("period");
             form2.Show();
         }
 
+        private void Button_Click_Payments(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2("payments");
+            form2.Show();
+        }
 
 
         public Label AddLabelProgress(int x, int y, string plan)

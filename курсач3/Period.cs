@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace курсач3
 {
-    internal class Period:Plan
+    public class Period:Plan
     {
 
         public Period(string name, int goalAmount, double startAmount, string frequency, double incomePercent, double investAmount, double paymentAmount, double inflation) : base(name, goalAmount, startAmount, frequency, incomePercent, investAmount, inflation)
