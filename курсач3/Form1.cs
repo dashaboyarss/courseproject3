@@ -205,7 +205,7 @@ namespace курсач3
 
             return result;
         }
-        static double Step(string freq)
+        public static double Step(string freq)
         {
             double step = 0;
             if (freq == "раз в неделю")

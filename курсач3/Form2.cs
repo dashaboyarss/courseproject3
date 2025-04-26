@@ -27,6 +27,10 @@ namespace курсач3
         private RichTextBox timeRichTextBox;
         private RichTextBox countPaymentRichTextBox;
 
+        public int paymentsDone = 0;
+
+        public static Form2 CurrentForm { get; private set; }
+
         public Form2(Plan plan)
         {
             Text = "Сохраненный план";
@@ -46,10 +50,13 @@ namespace курсач3
             timeRichTextBox = new RichTextBox();
             countPaymentRichTextBox = new RichTextBox();
 
+            CurrentForm = this;
+
             AddLabels();
             AddTextBoxes();
             AddPaymentBlock();
             FillTextBoxes(plan);
+            MyChart.AddChartToForm(plan);
         }
 
         private void AddLabels()
@@ -125,13 +132,13 @@ namespace курсач3
             labelTime.Text = "Срок достижения цели:";
             labelTime.Font = new System.Drawing.Font(labelTime.Font.FontFamily, 11, FontStyle.Regular);
             labelTime.Location = new Point(335, y1);
-            labelTime.Size = new Size(392, 26);
+            labelTime.Size = new Size(200, 26);
             y1 += 65;
 
             labelPaymentCount.Text = "Оставшееся количество взносов:";
             labelPaymentCount.Font = new System.Drawing.Font(labelTime.Font.FontFamily, 11, FontStyle.Regular);
             labelPaymentCount.Location = new Point(335, y1);
-            labelPaymentCount.Size = new Size(392, 26);
+            labelPaymentCount.Size = new Size(300, 26);
 
             this.Controls.Add(labelName);
             this.Controls.Add(labelGoal);
@@ -246,7 +253,7 @@ namespace курсач3
             goalWithInflationRichTextBox.Text = plan.amountWithInflation.ToString();
             investIncomeRichTextBox.Text = plan.investIncome.ToString();
             paymentAmountRichTextBox.Text = plan.paymentAmount.ToString();
-            timeRichTextBox.Text = plan.time.ToString();
+            timeRichTextBox.Text = Plan.TimeToYears(plan.time);
             countPaymentRichTextBox.Text = plan.countPayments.ToString();
         }
 

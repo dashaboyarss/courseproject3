@@ -272,5 +272,44 @@ namespace курсач3
             }
             return -1;
         }
+
+        public static string TimeToYears(int weeks)
+        {
+            int months;
+            int years;
+            string resultYears;
+            string resultMonths;
+            string resultWeeks;
+
+            months = weeks / 4;
+
+            if (weeks % 4 == 0) weeks = 0;
+            else weeks = weeks % 4;
+
+            if (months < 12) years = 0;
+            else
+            {
+                years = months / 12;
+                if (months % 12 == 0) months = 0;
+                else months = months % 12;
+            }
+
+            if (years == 0) resultYears = "";
+            else if (years >= 11 && years <= 14) resultYears = $"{years} лет ";
+            else if (years == 1 || years % 10 == 1) resultYears = $"{years} год ";
+            else if (years >= 2 && years <= 4 || years % 10 <= 4 && years % 10 >= 2) resultYears = $"{years} года ";
+            else resultYears = $"{years} лет ";
+
+            if (months == 0) resultMonths = "";
+            else if (months >= 5) resultMonths = $"{months} месяцев ";
+            else if (months == 1) resultMonths = $"{months} месяц ";
+            else resultMonths = $"{months} месяца ";
+
+            if (weeks == 0) resultWeeks = "";
+            else if (weeks == 1) resultWeeks = "1 неделя";
+            else resultWeeks = $"{weeks} недели";
+
+            return resultYears + resultMonths + resultWeeks;
+        }
     }
 }
