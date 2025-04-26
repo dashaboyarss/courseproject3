@@ -25,6 +25,7 @@ namespace курсач3
         private RichTextBox investIncomeRichTextBox;
         private RichTextBox paymentAmountRichTextBox;
         private RichTextBox timeRichTextBox;
+        private RichTextBox countPaymentRichTextBox;
 
         public Form2(Plan plan)
         {
@@ -43,6 +44,7 @@ namespace курсач3
             investIncomeRichTextBox = new RichTextBox();
             paymentAmountRichTextBox = new RichTextBox();
             timeRichTextBox = new RichTextBox();
+            countPaymentRichTextBox = new RichTextBox();
 
             AddLabels();
             AddTextBoxes();
@@ -63,6 +65,7 @@ namespace курсач3
             Label labelInvestIncome = new Label();
             Label labelPaymentAmount = new Label();
             Label labelTime = new Label();
+            Label labelPaymentCount = new Label();
 
             int y = 29;
             labelName.Location = new System.Drawing.Point(50, y);
@@ -125,6 +128,11 @@ namespace курсач3
             labelTime.Size = new Size(392, 26);
             y1 += 65;
 
+            labelPaymentCount.Text = "Оставшееся количество взносов:";
+            labelPaymentCount.Font = new System.Drawing.Font(labelTime.Font.FontFamily, 11, FontStyle.Regular);
+            labelPaymentCount.Location = new Point(335, y1);
+            labelPaymentCount.Size = new Size(392, 26);
+
             this.Controls.Add(labelName);
             this.Controls.Add(labelGoal);
             this.Controls.Add(labelFreq);
@@ -136,6 +144,7 @@ namespace курсач3
             this.Controls.Add(labelInvestIncome);
             this.Controls.Add(labelPaymentAmount);
             this.Controls.Add(labelTime);
+            this.Controls.Add(labelPaymentCount);
         }
 
         
@@ -207,7 +216,9 @@ namespace курсач3
             timeRichTextBox.Size = new System.Drawing.Size(290, 29);
             timeRichTextBox.Font = new Font(timeRichTextBox.Font.FontFamily, 11, FontStyle.Regular);
 
-           
+            countPaymentRichTextBox.Size = new System.Drawing.Size(290, 29);
+            countPaymentRichTextBox.Font = new Font(paymentAmountRichTextBox.Font.FontFamily, 11, FontStyle.Regular);
+            countPaymentRichTextBox.Location = new System.Drawing.Point(338, y1);
 
             this.Controls.Add(nameTextBox);
             this.Controls.Add(goalTextBox);
@@ -220,6 +231,7 @@ namespace курсач3
             this.Controls.Add(investIncomeRichTextBox);
             this.Controls.Add(paymentAmountRichTextBox);
             this.Controls.Add(timeRichTextBox);
+            this.Controls.Add(countPaymentRichTextBox);
         }
 
         private void FillTextBoxes(Plan plan)
@@ -235,12 +247,9 @@ namespace курсач3
             investIncomeRichTextBox.Text = plan.investIncome.ToString();
             paymentAmountRichTextBox.Text = plan.paymentAmount.ToString();
             timeRichTextBox.Text = plan.time.ToString();
+            countPaymentRichTextBox.Text = plan.countPayments.ToString();
         }
 
-        private void FillTextBoxes(int number)
-        {
-
-        }
 
         private void AddPaymentBlock()
         {

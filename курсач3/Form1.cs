@@ -32,10 +32,13 @@ namespace курсач3
 
         int countPanel = 0;
 
+        public static Form1 CurrentForm { get; private set; }
+
         public Form1()
         {
             InitializeComponent();
             this.Load += Form1_Load;
+            CurrentForm = this;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -44,6 +47,8 @@ namespace курсач3
 
             AddPlanPanels();
         }
+
+        public TabPage GetTabPagePlans() => tabPage1;
 
         private void FillList()
         {
@@ -86,162 +91,10 @@ namespace курсач3
         {
             foreach (Plan item in plans)
             {
-                AddPanel(item);
+                //AddPanel(item);
+                Panel.AddPanel(item);
             }
         }
-
-        public void AddPanel(Plan plan)
-        {
-            int l = 60; //расстояние между блоками
-            int lines; //ряд для расположения нового блока
-            int columns; //колонка для расположения нового блока
-            if (countPanel < 4) //если блоков менее 4
-            {
-                lines = 1;
-                columns = countPanel + 1;
-            }
-            else
-            {
-                if (countPanel % 4 == 0) lines = countPanel / 4 + 1;
-                else lines = countPanel / 4;
-                columns = countPanel % 4 + 1;
-            }
-
-            //расчет расположения блока
-            int x = 60 + (columns - 1) * (160 + l);
-            int y = 50 + (lines - 1) * (250 + l);
-
-            //создание блока и установка характеристик
-            Panel newPanel = new Panel();
-            newPanel.Size = new Size(160, 250);
-            if (countPanel == 0)//установка расположения первого блока
-            {
-                newPanel.Location = new System.Drawing.Point(60, 50);
-            }
-            else newPanel.Location = new System.Drawing.Point(x, y); //установка расположения всех последующих блоков
-            countPanel++;
-            newPanel.BackColor = System.Drawing.Color.White;
-            newPanel.BorderStyle = BorderStyle.FixedSingle;
-
-            //добавление названия плана на панель
-            Label label = AddLabel(newPanel.Location.X, newPanel.Location.Y, plan);
-            newPanel.Controls.Add(label);
-            this.tabPage1.Controls.Add(label);
-
-            Label label1 = AddLabel(newPanel.Location.X, newPanel.Location.Y);
-            newPanel.Controls.Add(label1);
-            this.tabPage1.Controls.Add(label1);
-
-            Label labelGoal = AddLabelGoal(newPanel.Location.X, newPanel.Location.Y, plan);
-            newPanel.Controls.Add(labelGoal);
-            this.tabPage1.Controls.Add(labelGoal);
-
-            Label labelProgress = AddLabelProgress(newPanel.Location.X, newPanel.Location.Y);
-            newPanel.Controls.Add(labelProgress);
-            this.tabPage1.Controls.Add(labelProgress);
-
-            Label labelProgress1 = AddLabelProgress(newPanel.Location.X, newPanel.Location.Y, plan);
-            newPanel.Controls.Add(labelProgress1);
-            this.tabPage1.Controls.Add(labelProgress1);
-
-            ProgressBar progressBar = AddProgressBar(x, y, plan);
-            newPanel.Controls.Add(progressBar);
-            this.tabPage1.Controls.Add(progressBar);
-
-            Button button = AddButton(x, y, plan);
-            newPanel.Controls.Add(button);
-            this.tabPage1.Controls.Add(button);
-
-            //добавление блока на форму
-            tabPage1.Controls.Add(newPanel);
-            this.tabPage1.Controls.Add(newPanel);
-        }
-
-        public Label AddLabel(int x, int y, Plan plan)
-        {
-            Label label = new Label();
-
-            label.Text = plan.name;
-
-            label.Location = new System.Drawing.Point(x + 10, y + 15);
-            label.Size = new Size(140, 40);
-            label.ForeColor = System.Drawing.Color.Black;
-            label.BackColor = System.Drawing.Color.White;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Font = new System.Drawing.Font(label.Font.FontFamily, 10, FontStyle.Bold);
-
-            return label;
-        }
-
-        public Label AddLabelGoal(int x, int y, Plan plan)
-        {
-            Label label = new Label();
-
-            label.Text = plan.amountWithInflation.ToString() + " рублей";
-
-            label.Location = new System.Drawing.Point(x + 10, y + 85);
-            label.Size = new Size(140, 30);
-            label.ForeColor = System.Drawing.Color.Black;
-            label.BackColor = System.Drawing.Color.White;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Font = new System.Drawing.Font(label.Font.FontFamily, 10, FontStyle.Regular);
-
-            return label;
-        }
-
-        public Label AddLabelProgress(int x, int y, Plan plan)
-        {
-            Label label = new Label();
-
-            label.Text = $"{plan.startAmount + plan.investAmount} / {Math.Round(plan.amountWithInflation, 2)}";
-
-            label.Location = new System.Drawing.Point(x + 15, y + 135);
-            label.Size = new Size(130, 20);
-            label.ForeColor = System.Drawing.Color.Black;
-            label.BackColor = System.Drawing.Color.White;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Font = new System.Drawing.Font(label.Font.FontFamily, 7, FontStyle.Regular);
-
-            return label;
-        }
-
-        public ProgressBar AddProgressBar(int x, int y, Plan plan)
-        {
-            ProgressBar progressBar = new ProgressBar();
-
-            progressBar.Size = new System.Drawing.Size(130, 20);
-            progressBar.Location = new System.Drawing.Point(x + 15, y + 165);
-
-            progressBar.Value = (int)((plan.startAmount + plan.investAmount) / plan.amountWithInflation * 100);
-
-            return progressBar;
-        }
-
-        public Button AddButton(int x, int y, Plan plan)
-        {
-            Button button = new Button();
-            button.Text = "Открыть";
-            button.Size = new System.Drawing.Size(70, 30);
-            button.Location = new System.Drawing.Point(x + 45, y + 200);
-
-            button.Click += (sender, e) => Button_Click_Plan(sender, e, plan);
-
-            return button;
-        }
-
-        private void Button_Click_Plan(object sender, EventArgs e, Plan plan)
-        {
-            var wbook = new XLWorkbook();
-            string filePath = "simple.xlsx";
-
-            using (wbook = new XLWorkbook(filePath))
-            {
-                var ws = wbook.Worksheet(1);
-                Form2 form2 = new Form2(plan);
-                form2.Show();
-            }
-        }
-
 
 
         static bool ParseInput(string input)
@@ -551,9 +404,51 @@ namespace курсач3
 
             SavePlanPeriod();
 
-            AddPanel(planPeriod);
+            Panel.AddPanel(planPeriod);
+
+            ClearAllTextBoxesInTabPage(CurrentForm);
+            ClearChart1();
         }
 
+        public void ClearChart1()
+        {     
+            chart1.Annotations.Clear();
+            foreach (var series in chart1.Series)
+            {
+                series.Points.Clear(); // Очищает точки данных, но оставляет серию
+            }
+        }
+
+        public void ClearAllTextBoxesInTabPage(Form1 form)
+        {
+            foreach (System.Windows.Forms.Control control in form.Controls)
+            {
+                ClearTextBoxesRecursive(control);
+            }
+        }
+
+        private void ClearTextBoxesRecursive(System.Windows.Forms.Control parentControl)
+        {
+            foreach (System.Windows.Forms.Control control in parentControl.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Text = string.Empty;
+                }
+                if (control is RichTextBox)
+                {
+                    ((RichTextBox)control).Text = string.Empty;
+                }
+                if (control is ComboBox)
+                {
+                    ((ComboBox)control).Text = string.Empty;
+                }
+                else if (control.HasChildren)
+                {
+                    ClearTextBoxesRecursive(control); // Рекурсивный обход вложенных элементов
+                }
+            }
+        }
 
 
         public void SavePlanPeriod()
@@ -666,36 +561,6 @@ namespace курсач3
             }
         }
 
-        public Label AddLabel(int x, int y)
-        {
-            Label label = new Label();
-            label.Text = "Целевая сумма с учетом инфляции:";
-
-            label.Location = new System.Drawing.Point(x + 10, y + 60);
-            label.Size = new Size(140, 30);
-            label.ForeColor = System.Drawing.Color.Black;
-            label.BackColor = System.Drawing.Color.White;
-            label.Font = new System.Drawing.Font(label.Font.FontFamily, 7, FontStyle.Regular);
-
-            return label;
-        }
-
-
-        public Label AddLabelProgress(int x, int y)
-        {
-            Label label = new Label();
-            label.Text = "Прогресс:";
-
-            label.Location = new System.Drawing.Point(x + 10, y + 120);
-            label.Size = new Size(140, 15);
-            label.ForeColor = System.Drawing.Color.Black;
-            label.BackColor = System.Drawing.Color.White;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Font = new System.Drawing.Font(label.Font.FontFamily, 7, FontStyle.Bold);
-
-            return label;
-        }
-
 
         private void label24_Click(object sender, EventArgs e)
         {
@@ -707,7 +572,18 @@ namespace курсач3
 
             SavePlanPayment();
 
-            AddPanel(planPayments);
+            Panel.AddPanel(planPayments);
+
+            ClearAllTextBoxesInTabPage(CurrentForm);
+            ClearChart2();
+        }
+        public void ClearChart2()
+        {
+            chart.Annotations.Clear();
+            foreach (var series in chart.Series)
+            {
+                series.Points.Clear(); // Очищает точки данных, но оставляет серию
+            }
         }
     }
 }
