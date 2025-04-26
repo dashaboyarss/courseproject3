@@ -570,7 +570,7 @@
             this.buttonSavePeriod.TabIndex = 24;
             this.buttonSavePeriod.Text = "СОХРАНИТЬ РАСЧЕТЫ";
             this.buttonSavePeriod.UseVisualStyleBackColor = true;
-            this.buttonSavePeriod.Click += new System.EventHandler(this.button4_Click);
+            this.buttonSavePeriod.Click += new System.EventHandler(this.button4_Click_Period);
             // 
             // countTimeButton
             // 

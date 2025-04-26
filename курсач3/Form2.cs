@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-//using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,18 +26,29 @@ namespace курсач3
         private RichTextBox paymentAmountRichTextBox;
         private RichTextBox timeRichTextBox;
 
-
-        public Form2(string plan)
+        public Form2(Plan plan)
         {
             Text = "Сохраненный план";
             Size = new System.Drawing.Size(1103, 711);
             BackColor = System.Drawing.Color.LightGray;
 
+            nameTextBox = new TextBox();
+            goalTextBox = new TextBox();
+            freqComboBox = new ComboBox();
+            inflationTextBox = new TextBox();
+            investPercentTextBox = new TextBox();
+            investAmountTextBox = new TextBox();
+            currentSumTextBox = new TextBox();
+            goalWithInflationRichTextBox = new RichTextBox();
+            investIncomeRichTextBox = new RichTextBox();
+            paymentAmountRichTextBox = new RichTextBox();
+            timeRichTextBox = new RichTextBox();
+
             AddLabels();
             AddTextBoxes();
             AddPaymentBlock();
+            FillTextBoxes(plan);
         }
-
 
         private void AddLabels()
         {
@@ -132,17 +142,6 @@ namespace курсач3
 
         private void AddTextBoxes()
         {
-            nameTextBox = new TextBox();
-            goalTextBox = new TextBox();
-            freqComboBox = new ComboBox();
-            inflationTextBox = new TextBox();
-            investPercentTextBox = new TextBox();
-            investAmountTextBox = new TextBox();
-            currentSumTextBox = new TextBox();
-            goalWithInflationRichTextBox = new RichTextBox();
-            investIncomeRichTextBox = new RichTextBox();
-            paymentAmountRichTextBox = new RichTextBox();
-            timeRichTextBox = new RichTextBox();
 
             int y = 45;
 
@@ -156,7 +155,6 @@ namespace курсач3
             y += 50;
             goalTextBox.Size = new System.Drawing.Size(131, 20);
             goalTextBox.BorderStyle = BorderStyle.FixedSingle;
-            //goalTextBox.ReadOnly = true;
 
             freqComboBox.Location = new System.Drawing.Point(53, y);
             y += 50;
@@ -209,7 +207,7 @@ namespace курсач3
             timeRichTextBox.Size = new System.Drawing.Size(290, 29);
             timeRichTextBox.Font = new Font(timeRichTextBox.Font.FontFamily, 11, FontStyle.Regular);
 
-            FillTextBoxes();
+           
 
             this.Controls.Add(nameTextBox);
             this.Controls.Add(goalTextBox);
@@ -224,36 +222,24 @@ namespace курсач3
             this.Controls.Add(timeRichTextBox);
         }
 
-        private void FillTextBoxes()
+        private void FillTextBoxes(Plan plan)
         {
-            var wbook = new XLWorkbook();
-            string filePath = "simple.xlsx";
-            
-            using (wbook = new XLWorkbook(filePath))
-            {
-                var ws = wbook.Worksheet(1);
-                for (int i = 2; i < 100; i++)
-                {
-                    if (ws.Cell($"A{i}").Value.ToString() == /*с чем сравнить*/ || ws.Cell($"A{i + 1}").IsEmpty())
-                    {
-                        nameTextBox.Text = ws.Cell($"A{i}").Value.ToString();
-                        goalTextBox.Text = ws.Cell($"B{i}").Value.ToString();
-                        freqComboBox.Text = ws.Cell($"D{i}").Value.ToString();
-                        inflationTextBox.Text = ws.Cell($"H{i}").Value.ToString();
-                        investPercentTextBox.Text = ws.Cell($"E{i}").Value.ToString();
-                        investAmountTextBox.Text = ws.Cell($"F{i}").Value.ToString();
-                        currentSumTextBox.Text = ws.Cell($"C{i}").Value.ToString();
-                        goalWithInflationRichTextBox.Text = ws.Cell($"I{i}").Value.ToString();
-                        investIncomeRichTextBox.Text = ws.Cell($"J{i}").Value.ToString();
-                        paymentAmountRichTextBox.Text = ws.Cell($"K{i}").Value.ToString();
-                        timeRichTextBox.Text = ws.Cell($"G{i}").Value.ToString();
+            nameTextBox.Text = plan.name;
+            goalTextBox.Text = plan.goalAmount.ToString();
+            freqComboBox.Text = plan.frequency;
+            inflationTextBox.Text = plan.inflation.ToString();
+            investPercentTextBox.Text = plan.incomePercent.ToString();
+            investAmountTextBox.Text = plan.investAmount.ToString();
+            currentSumTextBox.Text= plan.startAmount.ToString();
+            goalWithInflationRichTextBox.Text = plan.amountWithInflation.ToString();
+            investIncomeRichTextBox.Text = plan.investIncome.ToString();
+            paymentAmountRichTextBox.Text = plan.paymentAmount.ToString();
+            timeRichTextBox.Text = plan.time.ToString();
+        }
 
-                        //ws.Cell($"L{i}").Value = planPeriod.countPayments.ToString();
-                        break;
-                    }
-                }
-                //wbook.Save();
-            }
+        private void FillTextBoxes(int number)
+        {
+
         }
 
         private void AddPaymentBlock()

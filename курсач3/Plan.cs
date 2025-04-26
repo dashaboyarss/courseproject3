@@ -11,7 +11,7 @@ namespace курсач3
     public class Plan
     {
         public string name;
-        public int goalAmount;
+        public double goalAmount;
         public double startAmount;
         public string frequency;
         public double incomePercent;
@@ -25,10 +25,14 @@ namespace курсач3
         public bool isCorrect = true;
 
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get => name;
+            set => name = value;
+        }
 
 
-        public int GoalAmount
+        public double GoalAmount
         {
             get => goalAmount;
             set
@@ -135,6 +139,23 @@ namespace курсач3
             this.IncomePercent = incomePercent;
             this.investAmount = investAmount;
             this.Inflation = inflation;
+        }
+
+        public Plan(string name, double goalAmount, double startAmount, string frequency, double incomePercent, double investAmount, double inflation, double amountWithInflation, double investIncome, 
+            int time, double paymentAmount, int countPayments)
+        {
+            this.name = name;
+            this.goalAmount = goalAmount;
+            this.StartAmount = startAmount;
+            this.Frequency = frequency;
+            this.IncomePercent = incomePercent;
+            this.investAmount = investAmount;
+            this.Inflation = inflation;
+            this.amountWithInflation = amountWithInflation;
+            this.investIncome = investIncome;
+            this.time = time;
+            this.paymentAmount = paymentAmount;
+            this.countPayments = countPayments;
         }
 
 
