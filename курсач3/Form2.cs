@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -54,9 +55,33 @@ namespace курсач3
 
             AddLabels();
             AddTextBoxes();
-            AddPaymentBlock();
+            AddPaymentBlock(plan);
             FillTextBoxes(plan);
             MyChart.AddChartToForm(plan);
+            AddProgressBar(plan);
+        }
+        private void AddProgressBar(Plan plan)
+        {
+            AddProgressLabel(plan);
+
+            ProgressBar progressBar = new ProgressBar();
+
+            progressBar.Size = new System.Drawing.Size(400, 40);
+            progressBar.Location = new System.Drawing.Point(90, 460);
+
+            progressBar.Value = (int)((plan.startAmount + plan.investAmount) / plan.amountWithInflation * 100);
+
+            this.Controls.Add(progressBar);
+        }
+
+        private void AddProgressLabel(Plan plan)
+        {
+            Label labelProgress = new Label();
+            labelProgress.Location = new System.Drawing.Point(200, 430);
+            labelProgress.Text = $"Накоплено: {plan.startAmount + plan.investAmount} / {plan.amountWithInflation}";
+            labelProgress.Size = new System.Drawing.Size(224, 13);
+
+            this.Controls.Add(labelProgress);
         }
 
         private void AddLabels()
@@ -246,7 +271,7 @@ namespace курсач3
             nameTextBox.Text = plan.name;
             goalTextBox.Text = plan.goalAmount.ToString();
             freqComboBox.Text = plan.frequency;
-            inflationTextBox.Text = plan.inflation.ToString();
+            inflationTextBox.Text = (plan.inflation*100).ToString();
             investPercentTextBox.Text = plan.incomePercent.ToString();
             investAmountTextBox.Text = plan.investAmount.ToString();
             currentSumTextBox.Text= plan.startAmount.ToString();
@@ -258,7 +283,7 @@ namespace курсач3
         }
 
 
-        private void AddPaymentBlock()
+        private void AddPaymentBlock(Plan plan)
         {
             this.Paint += new PaintEventHandler(DrawRectangle);
 
@@ -281,13 +306,20 @@ namespace курсач3
             Button button = new Button();
             button.Text = "ВНЕСТИ";
             button.Size = new System.Drawing.Size(90, 44);
-            button.Location = new System.Drawing.Point(760 + 55, 142); 
+            button.Location = new System.Drawing.Point(760 + 55, 142);
+
+            button.Click += (sender, e) => Button_AddData_Click(sender, e, plan);
 
             this.Controls.Add(button);
         }
 
-        private void DrawRectangle(object sender, PaintEventArgs e)
+        private void Button_AddData_Click(object sender, EventArgs e, Plan plan)
         {
+
+        }
+
+            private void DrawRectangle(object sender, PaintEventArgs e)
+            {
             Graphics g = e.Graphics;
 
             GraphicsPath path = new GraphicsPath();
@@ -315,7 +347,7 @@ namespace курсач3
             {
                 g.DrawPath(pen, path); 
             }
-        }
+            }
 
         private Color InterpolateColors(Color color1, Color color2, float ratio)
         {
@@ -328,10 +360,6 @@ namespace курсач3
             return Color.FromArgb(r, g, b);
         }
 
-        private void AddChart()
-        {
-           Chart chart = new Chart();
-            
-        }
+        
     }
 }
