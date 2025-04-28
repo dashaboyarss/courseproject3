@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -16,6 +17,8 @@ namespace курсач3
     public partial class Form1 : Form
     {
         private List<Plan> plans = new List<Plan>();
+
+        public static  List<Point> points = new List<Point>();
         
         bool isCorrect = true; //флаг, проверяющий корректность всех введенных данных
         public static Payments planPayments;
@@ -50,6 +53,32 @@ namespace курсач3
 
         public TabPage GetTabPagePlans() => tabPage1;
 
+        private void FillListPoints()
+        {
+            var historyBook = new XLWorkbook();
+            string filePath = "history.xlsx";
+            if (File.Exists(filePath))
+            {
+                using (historyBook = new XLWorkbook(filePath))
+                {
+                    var ws = historyBook.Worksheet(1);
+
+                    int count = 2;
+                    while (!ws.Cell($"A{count}").IsEmpty())
+                    {
+                        string name = ws.Cell($"A{count}").Value.ToString();
+                        int sum = int.Parse(ws.Cell($"B{count}").Value.ToString());
+                        int weeks = int.Parse(ws.Cell($"C{count}").Value.ToString());
+
+                        Point point = new Point(name, sum, weeks);
+                        points.Add(point);
+
+                        count++;
+                    }
+                }
+            }
+        }
+
         private void FillList()
         {
             var wbook = new XLWorkbook();
@@ -64,7 +93,7 @@ namespace курсач3
                     while (!ws.Cell($"A{count}").IsEmpty())
                     {
                         string name = ws.Cell($"A{count}").Value.ToString();
-                        double goal = double.Parse(ws.Cell($"B{count}").Value.ToString());
+                        int goal = int.Parse(ws.Cell($"B{count}").Value.ToString());
                         double startAmount = double.Parse(ws.Cell($"C{count}").Value.ToString());
                         string frequency = ws.Cell($"D{count}").Value.ToString();
                         double investPercent = double.Parse(ws.Cell($"E{count}").Value.ToString());
@@ -75,8 +104,12 @@ namespace курсач3
                         double investIncome = double.Parse(ws.Cell($"J{count}").Value.ToString());
                         double paymentAmount = double.Parse(ws.Cell($"K{count}").Value.ToString());
                         int paymentCount = int.Parse(ws.Cell($"L{count}").Value.ToString());
+                        double currentAmount = double.Parse(ws.Cell($"M{count}").Value.ToString());
+                        double currentInvestAmount = double.Parse(ws.Cell($"N{count}").Value.ToString());
+                        int timeLeft = int.Parse(ws.Cell($"O{count}").Value.ToString());
+                        string date = ws.Cell($"P{count}").Value.ToString();
 
-                        Plan plan = new Plan(name, goal, startAmount, frequency, investPercent, investAmount, inflation, goalWithInflation, investIncome, time, paymentAmount, paymentCount);
+                        Plan plan = new Plan(name, goal, startAmount, frequency, investPercent, investAmount, inflation, goalWithInflation, investIncome, time, paymentAmount, paymentCount, currentAmount, currentInvestAmount, date);
                         plans.Add(plan);
                         countSavedPlan++;
 
@@ -470,6 +503,10 @@ namespace курсач3
                 ws.Cell($"J1").Value = "Доход от инвестиций";
                 ws.Cell($"K1").Value = "Сумма регулярных взносов";
                 ws.Cell($"L1").Value = "Количество взносов";
+                ws.Cell($"M1").Value = "Текущая сумма без инвестиций";
+                ws.Cell($"N1").Value = "Текущая сумма на инвестиционном счету";
+                ws.Cell($"O1").Value = "Оставшееся время";
+                ws.Cell($"P1").Value = "Время создания плана";
                 wbook.SaveAs("simple.xlsx");
 
                 
@@ -491,13 +528,17 @@ namespace курсач3
                         ws.Cell($"C{i}").Value = planPeriod.StartAmount.ToString();
                         ws.Cell($"D{i}").Value = planPeriod.Frequency.ToString();
                         ws.Cell($"E{i}").Value = planPeriod.incomePercent.ToString();
-                        ws.Cell($"F{i}").Value = planPeriod.investAmount.ToString();
+                        ws.Cell($"F{i}").Value = planPeriod.startInvestAmount.ToString();
                         ws.Cell($"G{i}").Value = planPeriod.time.ToString();
                         ws.Cell($"H{i}").Value = planPeriod.inflation.ToString();
                         ws.Cell($"I{i}").Value = planPeriod.amountWithInflation.ToString();
                         ws.Cell($"J{i}").Value = planPeriod.investIncome.ToString();
                         ws.Cell($"K{i}").Value = planPeriod.PaymentAmount.ToString();
                         ws.Cell($"L{i}").Value = planPeriod.countPayments.ToString();
+                        ws.Cell($"M{i}").Value = planPeriod.currentAmount.ToString();
+                        ws.Cell($"N{i}").Value = planPeriod.currentInvestAmount.ToString();
+                        ws.Cell($"O{i}").Value = planPeriod.remainingTime.ToString();
+                        ws.Cell($"P{i}").Value = planPeriod.date.ToString("d");
 
                         countSavedPlan++;
                         break;
@@ -526,6 +567,10 @@ namespace курсач3
                 ws.Cell($"J1").Value = "Доход от инвестиций";
                 ws.Cell($"K1").Value = "Сумма регулярных взносов";
                 ws.Cell($"L1").Value = "Количество взносов";
+                ws.Cell($"M1").Value = "Текущая сумма без инвестиций";
+                ws.Cell($"N1").Value = "Текущая сумма на инвестиционном счету";
+                ws.Cell($"O1").Value = "Оставшееся время";
+                ws.Cell($"P1").Value = "Время создания плана";
                 wbook.SaveAs("simple.xlsx");
             }
             using (wbook = new XLWorkbook(filePath))
@@ -552,7 +597,10 @@ namespace курсач3
                         ws.Cell($"J{i}").Value = planPayments.investIncome.ToString();
                         ws.Cell($"K{i}").Value = planPayments.paymentAmount.ToString();
                         ws.Cell($"L{i}").Value = planPayments.countPayments.ToString();
-
+                        ws.Cell($"M{i}").Value = planPayments.currentAmount.ToString();
+                        ws.Cell($"N{i}").Value = planPayments.currentInvestAmount.ToString();
+                        ws.Cell($"O{i}").Value = planPayments.remainingTime.ToString();
+                        ws.Cell($"P{i}").Value = planPayments.date.ToString("d");
 
                         break;
                     }

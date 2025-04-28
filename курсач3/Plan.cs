@@ -11,11 +11,11 @@ namespace курсач3
     public class Plan
     {
         public string name;
-        public double goalAmount;
+        public int goalAmount;
         public double startAmount;
         public string frequency;
         public double incomePercent;
-        public double investAmount;
+        public double startInvestAmount;
         public double inflation;
         public double amountWithInflation;
         public double investIncome;
@@ -23,6 +23,26 @@ namespace курсач3
         public double paymentAmount;
         public int countPayments;
         public bool isCorrect = true;
+
+        public double currentAmount;
+        public double currentInvestAmount;
+        public int remainingTime;
+
+        public DateTime date;
+
+        public int RemainingTime
+        {
+            get
+            {
+                DateTime creatingTime = date;/* new DateTime(2024, 4, 26);*/
+                DateTime currentTime = DateTime.Now;
+                TimeSpan difference = currentTime - creatingTime;
+                int weeks = difference.Days / 7; //прошло недель с момента сохранения плана
+
+                return time - weeks;
+            }
+        }
+
 
 
         public string Name
@@ -32,7 +52,7 @@ namespace курсач3
         }
 
 
-        public double GoalAmount
+        public int GoalAmount
         {
             get => goalAmount;
             set
@@ -101,14 +121,14 @@ namespace курсач3
 
         public double InvestAmount
         {
-            get => investAmount;
+            get => startInvestAmount;
             set
             {
-                if (value >= 0) investAmount = value;
+                if (value >= 0) startInvestAmount = value;
                 else
                 {
                     MessageBox.Show("Некорректно заполнено поле 'Сумма на инвестиционном счету'! Введите целое неотрицательное число");
-                    investAmount = -1;
+                    startInvestAmount = -1;
                     isCorrect = false;
                 }
             }
@@ -137,25 +157,32 @@ namespace курсач3
             this.StartAmount = startAmount;
             this.Frequency = frequency;
             this.IncomePercent = incomePercent;
-            this.investAmount = investAmount;
+            this.startInvestAmount = investAmount;
             this.Inflation = inflation;
+            this.currentAmount = startAmount;
+            this.currentInvestAmount = investAmount;
+            this.date = DateTime.Now;
         }
 
-        public Plan(string name, double goalAmount, double startAmount, string frequency, double incomePercent, double investAmount, double inflation, double amountWithInflation, double investIncome, 
-            int time, double paymentAmount, int countPayments)
+        public Plan(string name, int goalAmount, double startAmount, string frequency, double incomePercent, double investAmount, double inflation, double amountWithInflation, double investIncome, 
+            int time, double paymentAmount, int countPayments, double currentAmount, double currentInvestAmount/*, int timeLeft*/, string date)
         {
             this.name = name;
             this.goalAmount = goalAmount;
             this.StartAmount = startAmount;
             this.Frequency = frequency;
             this.IncomePercent = incomePercent;
-            this.investAmount = investAmount;
+            this.startInvestAmount = investAmount;
             this.Inflation = inflation;
             this.amountWithInflation = amountWithInflation;
             this.investIncome = investIncome;
             this.time = time;
             this.paymentAmount = paymentAmount;
             this.countPayments = countPayments;
+            this.currentAmount = currentAmount;
+            this.currentInvestAmount = currentInvestAmount;
+            //this.remainingTime = timeLeft;
+            this.date = DateTime.Parse(date);
         }
 
 
@@ -208,32 +235,32 @@ namespace курсач3
             if (frequency == "раз в неделю")
             {
                 goalAmountAfter = this.GoalAmount + this.GoalAmount * this.Inflation / 12 / 4;
-                incomeAfter = this.investAmount * this.incomePercent / 12 / 4 + this.paymentAmount + this.StartAmount + this.InvestAmount;
+                incomeAfter = this.startInvestAmount * this.incomePercent / 12 / 4 + this.paymentAmount + this.StartAmount + this.InvestAmount;
             }
             else if (frequency == "раз в 2 недели")
             {
                 goalAmountAfter = this.GoalAmount + this.GoalAmount * this.Inflation / 12 / 2;
-                incomeAfter = this.investAmount * this.incomePercent / 12 / 2 + this.paymentAmount + this.StartAmount + this.InvestAmount;
+                incomeAfter = this.startInvestAmount * this.incomePercent / 12 / 2 + this.paymentAmount + this.StartAmount + this.InvestAmount;
             }
             else if (frequency == "раз в месяц")
             {
                 goalAmountAfter = this.GoalAmount + this.GoalAmount * this.Inflation / 12 ;
-                incomeAfter = this.investAmount * this.incomePercent / 12 + this.paymentAmount + this.StartAmount + this.InvestAmount;
+                incomeAfter = this.startInvestAmount * this.incomePercent / 12 + this.paymentAmount + this.StartAmount + this.InvestAmount;
             }
             else if (frequency == "раз в 3 месяца")
             {
                 goalAmountAfter = this.GoalAmount + this.GoalAmount * this.Inflation / 4;
-                incomeAfter = this.investAmount * this.incomePercent / 4 + this.paymentAmount + this.StartAmount + this.InvestAmount;
+                incomeAfter = this.startInvestAmount * this.incomePercent / 4 + this.paymentAmount + this.StartAmount + this.InvestAmount;
             }
             else if (frequency == "раз в полгода")
             {
                 goalAmountAfter = this.GoalAmount + this.GoalAmount * this.Inflation / 2;
-                incomeAfter = this.investAmount * this.incomePercent / 2 + this.paymentAmount + this.StartAmount + this.InvestAmount;
+                incomeAfter = this.startInvestAmount * this.incomePercent / 2 + this.paymentAmount + this.StartAmount + this.InvestAmount;
             }
             else if (frequency == "раз в год")
             {
                 goalAmountAfter = this.GoalAmount + this.GoalAmount * this.Inflation;
-                incomeAfter = this.investAmount * this.incomePercent + this.paymentAmount + this.StartAmount + this.InvestAmount;
+                incomeAfter = this.startInvestAmount * this.incomePercent + this.paymentAmount + this.StartAmount + this.InvestAmount;
             }
 
             if (goalAmountAfter - incomeAfter > startDifference)

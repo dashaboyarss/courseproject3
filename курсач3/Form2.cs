@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using ClosedXML.Excel;
+//using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace курсач3
 {
     public partial class Form2: Form
     {
-
         private TextBox nameTextBox;
         private TextBox goalTextBox;
         private ComboBox freqComboBox;
@@ -27,8 +28,11 @@ namespace курсач3
         private RichTextBox paymentAmountRichTextBox;
         private RichTextBox timeRichTextBox;
         private RichTextBox countPaymentRichTextBox;
+        private TextBox goalTimeTextBox;
 
-        public int paymentsDone = 0;
+        Plan plan;
+        List<Point> points = new List<Point>();
+
 
         public static Form2 CurrentForm { get; private set; }
 
@@ -44,6 +48,7 @@ namespace курсач3
             inflationTextBox = new TextBox();
             investPercentTextBox = new TextBox();
             investAmountTextBox = new TextBox();
+            goalTimeTextBox = new TextBox();
             currentSumTextBox = new TextBox();
             goalWithInflationRichTextBox = new RichTextBox();
             investIncomeRichTextBox = new RichTextBox();
@@ -52,14 +57,44 @@ namespace курсач3
             countPaymentRichTextBox = new RichTextBox();
 
             CurrentForm = this;
+            this.plan = plan;
+            
 
+            this.Load += Form2_Load;
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
             AddLabels();
             AddTextBoxes();
             AddPaymentBlock(plan);
+            CountInvestAmount(plan);
             FillTextBoxes(plan);
-            MyChart.AddChartToForm(plan);
+
+            points.Add(new Point(plan.name, plan.startAmount + plan.startInvestAmount, 0));
+            FillHistory(plan.name);
+            MyChart.AddChartToForm(plan, points);
             AddProgressBar(plan);
         }
+
+        private void FillHistory(string name)
+        {
+            foreach (Point item in Form1.points)
+            {
+                if (item.name == name)
+                {
+                    this.points.Add(item);
+                }
+            }
+        }
+
+        private void CountInvestAmount(Plan plan)
+        {
+            int weeks = plan.time - plan.RemainingTime;
+            plan.currentInvestAmount = plan.InvestAmount + plan.InvestAmount * (plan.IncomePercent / 48 * weeks);
+            plan.investIncome = plan.currentInvestAmount - plan.InvestAmount;
+        }
+
         private void AddProgressBar(Plan plan)
         {
             AddProgressLabel(plan);
@@ -67,9 +102,9 @@ namespace курсач3
             ProgressBar progressBar = new ProgressBar();
 
             progressBar.Size = new System.Drawing.Size(400, 40);
-            progressBar.Location = new System.Drawing.Point(90, 460);
+            progressBar.Location = new System.Drawing.Point(90, 510);
 
-            progressBar.Value = (int)((plan.startAmount + plan.investAmount) / plan.amountWithInflation * 100);
+            progressBar.Value = (int)((plan.startAmount + plan.startInvestAmount) / plan.amountWithInflation * 100);
 
             this.Controls.Add(progressBar);
         }
@@ -77,8 +112,8 @@ namespace курсач3
         private void AddProgressLabel(Plan plan)
         {
             Label labelProgress = new Label();
-            labelProgress.Location = new System.Drawing.Point(200, 430);
-            labelProgress.Text = $"Накоплено: {plan.startAmount + plan.investAmount} / {plan.amountWithInflation}";
+            labelProgress.Location = new System.Drawing.Point(200, 480);
+            labelProgress.Text = $"Накоплено: {plan.startAmount + plan.startInvestAmount} / {plan.amountWithInflation}";
             labelProgress.Size = new System.Drawing.Size(224, 13);
 
             this.Controls.Add(labelProgress);
@@ -98,6 +133,7 @@ namespace курсач3
             Label labelPaymentAmount = new Label();
             Label labelTime = new Label();
             Label labelPaymentCount = new Label();
+            Label labelGoalTime = new Label();
 
             int y = 29;
             labelName.Location = new System.Drawing.Point(50, y);
@@ -125,6 +161,11 @@ namespace курсач3
             labelInvestPercent.Text = "Ожидаемая доходность от инвестиций (%):";
             labelInvestPercent.Size = new System.Drawing.Size(224, 13);
 
+            labelGoalTime.Location = new System.Drawing.Point(50, y);
+            y += 50;
+            labelGoalTime.Text = "Плановое время выполнения:";
+            labelGoalTime.Size = new System.Drawing.Size(224, 13);
+
             labelInvestAmount.Location = new System.Drawing.Point(50, y);
             y += 50;
             labelInvestAmount.Text = "Текущая сумма на инвестиционном счету:";
@@ -138,31 +179,31 @@ namespace курсач3
             int y1 = 24;
             labelGoalWithInflation.Text = "Сумма цели с учетом инфляции:";
             labelGoalWithInflation.Font = new System.Drawing.Font(labelGoalWithInflation.Font.FontFamily, 11, FontStyle.Regular);
-            labelGoalWithInflation.Location = new Point(335, y1);
+            labelGoalWithInflation.Location = new System.Drawing.Point(335, y1);
             labelGoalWithInflation.Size = new Size(392, 26);
             y1 += 65;
 
             labelInvestIncome.Text = "Текущий доход от инвестиций:";
             labelInvestIncome.Font = new System.Drawing.Font(labelInvestIncome.Font.FontFamily, 11, FontStyle.Regular);
-            labelInvestIncome.Location = new Point(335, y1);
+            labelInvestIncome.Location = new System.Drawing.Point(335, y1);
             labelInvestIncome.Size = new Size(392, 26);
             y1 += 65;
 
-            labelPaymentAmount.Text = "Размер взносов:";
+            labelPaymentAmount.Text = "Плановый размер взносов:";
             labelPaymentAmount.Font = new System.Drawing.Font(labelPaymentAmount.Font.FontFamily, 11, FontStyle.Regular);
-            labelPaymentAmount.Location = new Point(335, y1);
+            labelPaymentAmount.Location = new System.Drawing.Point(335, y1);
             labelPaymentAmount.Size = new Size(392, 26);
             y1 += 65;
 
-            labelTime.Text = "Срок достижения цели:";
+            labelTime.Text = "Оставшееся время цели:";
             labelTime.Font = new System.Drawing.Font(labelTime.Font.FontFamily, 11, FontStyle.Regular);
-            labelTime.Location = new Point(335, y1);
+            labelTime.Location = new System.Drawing.Point(335, y1);
             labelTime.Size = new Size(200, 26);
             y1 += 65;
 
             labelPaymentCount.Text = "Оставшееся количество взносов:";
             labelPaymentCount.Font = new System.Drawing.Font(labelTime.Font.FontFamily, 11, FontStyle.Regular);
-            labelPaymentCount.Location = new Point(335, y1);
+            labelPaymentCount.Location = new System.Drawing.Point(335, y1);
             labelPaymentCount.Size = new Size(300, 26);
 
             this.Controls.Add(labelName);
@@ -177,6 +218,7 @@ namespace курсач3
             this.Controls.Add(labelPaymentAmount);
             this.Controls.Add(labelTime);
             this.Controls.Add(labelPaymentCount);
+            this.Controls.Add(labelGoalTime);
         }
 
         
@@ -212,6 +254,11 @@ namespace курсач3
             y += 50;
             investPercentTextBox.Size = new System.Drawing.Size(131, 20);
             investPercentTextBox.BorderStyle = BorderStyle.FixedSingle;
+
+            goalTimeTextBox.Location = new System.Drawing.Point(53, y);
+            y += 50;
+            goalTimeTextBox.Size = new System.Drawing.Size(131, 20);
+            goalTimeTextBox.BorderStyle = BorderStyle.FixedSingle;
 
             investAmountTextBox.Location = new System.Drawing.Point(53, y);
             y += 50;
@@ -264,6 +311,7 @@ namespace курсач3
             this.Controls.Add(paymentAmountRichTextBox);
             this.Controls.Add(timeRichTextBox);
             this.Controls.Add(countPaymentRichTextBox);
+            this.Controls.Add(goalTimeTextBox);
         }
 
         private void FillTextBoxes(Plan plan)
@@ -272,13 +320,14 @@ namespace курсач3
             goalTextBox.Text = plan.goalAmount.ToString();
             freqComboBox.Text = plan.frequency;
             inflationTextBox.Text = (plan.inflation*100).ToString();
-            investPercentTextBox.Text = plan.incomePercent.ToString();
-            investAmountTextBox.Text = plan.investAmount.ToString();
-            currentSumTextBox.Text= plan.startAmount.ToString();
+            investPercentTextBox.Text = (plan.incomePercent*100).ToString();
+            goalTimeTextBox.Text = Plan.TimeToYears(plan.time);
+            investAmountTextBox.Text = plan.currentInvestAmount.ToString();
+            currentSumTextBox.Text= plan.currentAmount.ToString();
             goalWithInflationRichTextBox.Text = plan.amountWithInflation.ToString();
             investIncomeRichTextBox.Text = plan.investIncome.ToString();
             paymentAmountRichTextBox.Text = plan.paymentAmount.ToString();
-            timeRichTextBox.Text = Plan.TimeToYears(plan.time);
+            timeRichTextBox.Text = Plan.TimeToYears(plan.RemainingTime);
             countPaymentRichTextBox.Text = plan.countPayments.ToString();
         }
 
@@ -308,17 +357,118 @@ namespace курсач3
             button.Size = new System.Drawing.Size(90, 44);
             button.Location = new System.Drawing.Point(760 + 55, 142);
 
-            button.Click += (sender, e) => Button_AddData_Click(sender, e, plan);
+            button.Click += (sender, e) => Button_AddData_Click(sender, e, plan, textBox);
 
             this.Controls.Add(button);
         }
 
-        private void Button_AddData_Click(object sender, EventArgs e, Plan plan)
+        private void Button_AddData_Click(object sender, EventArgs e, Plan plan, TextBox amount)
         {
+            int sum = ParseInt(amount.Text);
+            Period newPlan;
+            if (sum != -1)
+            {
+                double currentSum = plan.currentAmount + sum;
+                
+                int time;
+                int countPayment;
+                
+                if (sum < plan.paymentAmount || sum > plan.paymentAmount)
+                {
+                    
+                }
+                else
+                {
+                    countPayment = plan.countPayments--;
+                    plan.currentAmount = currentSum;
+                    
+                    SaveChanges(plan);
+                    SavePoint(plan);
+                    points.Add(new Point(plan.name, plan.currentAmount + plan.currentInvestAmount, plan.time - plan.RemainingTime));
+                    FillTextBoxes(plan);
+                    MyChart.AddChartToForm(plan, points);
+                    amount.Clear();
+                }
+            }
+        }
+
+        private void SavePoint(Plan plan)
+        {
+            var historyBook = new XLWorkbook();
+            string filePath = "history.xlsx";
+
+            if (!File.Exists(filePath))
+            {
+                var ws = historyBook.Worksheets.Add("Sheet1");
+                ws.Cell($"A1").Value = "Имя плана";
+                ws.Cell($"B1").Value = "Сумма";
+                ws.Cell($"C1").Value = "Прошло недель";
+                historyBook.SaveAs("history.xlsx");
+            }
+            using (historyBook = new XLWorkbook(filePath))
+            {
+                var ws = historyBook.Worksheet(1);
+                int count = 2;
+
+                while (!ws.Cell($"A{count}").IsEmpty())
+                {
+                    count++;
+                }
+                ws.Cell($"A{count}").Value = plan.name;
+                ws.Cell($"B{count}").Value = (plan.currentAmount + plan.currentInvestAmount).ToString();
+                ws.Cell($"C{count}").Value = (plan.time - plan.RemainingTime).ToString();
+
+                historyBook.Save();
+            }
 
         }
 
-            private void DrawRectangle(object sender, PaintEventArgs e)
+        private void SaveChanges(Plan plan)
+        {
+            var wbook = new XLWorkbook();
+            string filePath = "simple.xlsx";
+
+            using (wbook = new XLWorkbook(filePath))
+            {
+                int count = 1;
+                var ws = wbook.Worksheet(1);
+
+                while (!ws.Cell($"A{count}").IsEmpty())
+                {
+                    if (ws.Cell($"A{count}").Value.ToString() == plan.name)
+                    {
+                        
+                        ws.Cell($"M{count}").Value = plan.currentAmount;
+                        ws.Cell($"N{count}").Value = plan.currentInvestAmount;
+                        ws.Cell($"J{count}").Value = plan.investIncome;
+                        ws.Cell($"L{count}").Value = plan.countPayments;
+                        break;
+                    }
+                    count++;
+                }
+                wbook.Save();
+            }
+        }
+      
+        private int ParseInt(string amount)
+        {
+            int correctAmount;
+            bool isConverted = Int32.TryParse(amount, out correctAmount);
+            if (isConverted)
+            {
+                if (correctAmount < 0)
+                {
+                    isConverted = false;
+                    MessageBox.Show("Сумма взноса должна быть положительным числом");
+                    return -1;
+                }
+                else return correctAmount;
+            }
+            MessageBox.Show("Неверно введено значение!\nВведите целое число");
+            return -1;
+        }
+
+        private void DrawRectangle(object sender, PaintEventArgs e)
             {
             Graphics g = e.Graphics;
 

@@ -119,7 +119,7 @@ namespace курсач3
         {
             Label label = new Label();
 
-            label.Text = $"{plan.startAmount + plan.investAmount} / {Math.Round(plan.amountWithInflation, 2)}";
+            label.Text = $"{plan.startAmount + plan.startInvestAmount} / {Math.Round(plan.amountWithInflation, 2)}";
 
             label.Location = new System.Drawing.Point(x + 15, y + 135);
             label.Size = new Size(130, 20);
@@ -138,7 +138,7 @@ namespace курсач3
             progressBar.Size = new System.Drawing.Size(130, 20);
             progressBar.Location = new System.Drawing.Point(x + 15, y + 165);
 
-            progressBar.Value = (int)((plan.startAmount + plan.investAmount) / plan.amountWithInflation * 100);
+            progressBar.Value = (int)((plan.startAmount + plan.startInvestAmount) / plan.amountWithInflation * 100);
 
             return progressBar;
         }
@@ -157,15 +157,8 @@ namespace курсач3
 
         private static void Button_Click_Plan(object sender, EventArgs e, Plan plan)
         {
-            var wbook = new XLWorkbook();
-            string filePath = "simple.xlsx";
-
-            using (wbook = new XLWorkbook(filePath))
-            {
-                var ws = wbook.Worksheet(1);
                 Form2 form2 = new Form2(plan);
                 form2.Show();
-            }
         }
 
         public static Label AddLabel(int x, int y)

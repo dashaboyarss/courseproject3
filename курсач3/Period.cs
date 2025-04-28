@@ -10,7 +10,8 @@ namespace курсач3
     public class Period:Plan
     {
 
-        public Period(string name, int goalAmount, double startAmount, string frequency, double incomePercent, double investAmount, double paymentAmount, double inflation) : base(name, goalAmount, startAmount, frequency, incomePercent, investAmount, inflation)
+        public Period(string name, int goalAmount, double startAmount, string frequency, double incomePercent, double investAmount, double paymentAmount, double inflation) : base(name, 
+            goalAmount, startAmount, frequency, incomePercent, investAmount, inflation)
         {
             this.paymentAmount = paymentAmount;
         }
@@ -111,7 +112,7 @@ namespace курсач3
                 int k = 0;
                 double perCent = 0;
                 double current = this.startAmount + this.InvestAmount;
-                double currentInvest = this.investAmount;
+                double currentInvest = this.startInvestAmount;
                 double target  = goalAmount;
                 double infl = 0;
 
@@ -163,6 +164,7 @@ namespace курсач3
                 }
 
                 this.time = count;
+                this.remainingTime = count;
             }
         }
 

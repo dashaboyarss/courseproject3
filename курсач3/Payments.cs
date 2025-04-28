@@ -31,6 +31,7 @@ namespace курсач3
         public Payments(string name, int goalAmount, double startAmount, string frequency, double incomePercent, double investIncome, int time, double inflation) : base(name, goalAmount, startAmount, frequency, incomePercent, investIncome, inflation)
         {
             this.Time = time;
+            this.remainingTime = time * 4;
         }
 
         public void NewGoalAmount()

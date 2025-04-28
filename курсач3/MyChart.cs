@@ -16,7 +16,7 @@ namespace курсач3
     public class MyChart
     {
         static Chart chart;
-        public static void AddChartToForm(Plan plan)
+        public static void AddChartToForm(Plan plan, List<Point> points)
         {
             // Создаем новый график
             chart = new Chart();
@@ -32,18 +32,14 @@ namespace курсач3
             chart.ChartAreas.Add(chartArea);
 
             // Настраиваем оси
-            chartArea.AxisX.Title = "Накопленная сумма";
-            chartArea.AxisY.Title = "Количество месяцев";
+            chartArea.AxisX.Title = "Количество месяцев";
+            chartArea.AxisY.Title = "Накопленная сумма";
             chartArea.AxisX.MajorGrid.Enabled = true;
             chartArea.AxisY.MajorGrid.Enabled = true;
 
             // Добавляем заголовок
             Title title = new Title("График накоплений", Docking.Top, new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold), System.Drawing.Color.Black);
             chart.Titles.Add(title);
-
-            // Добавляем легенду
-            //Legend legend = new Legend();
-            //chart.Legends.Add(legend);
 
             Series series1 = new Series("Плановые накопления")
             {
@@ -60,7 +56,7 @@ namespace курсач3
             {
                 ChartType = SeriesChartType.Line,
                 BorderWidth = 3,
-                Color = System.Drawing.Color.AliceBlue,
+                Color = System.Drawing.Color.Aquamarine,
                 MarkerStyle = MarkerStyle.Square,
                 MarkerSize = 8
             };
@@ -77,7 +73,7 @@ namespace курсач3
             chart.Series.Add(series3);
 
             //Строим график
-            FillChart(plan);
+            FillChart(plan, points);
 
             // Добавляем график на форму
             Form2 form = Form2.CurrentForm;
@@ -85,15 +81,18 @@ namespace курсач3
             form.Controls.Add(chart);
         }
 
-        private static void FillChart(Plan plan)
+        private static void FillChart(Plan plan, List<Point> points)
         {
             double payment = plan.paymentAmount;
             double step = Form1.Step(plan.frequency);
             double x = 0;
-            double y = plan.startAmount + plan.investAmount;
+            double y = plan.startAmount + plan.startInvestAmount;
             chart.Series[0].Points.Clear();
             chart.Series[1].Points.Clear();
             chart.Series[2].Points.Clear();
+
+            chart.Series[1].Enabled = true;
+            chart.Series[1].IsVisibleInLegend = true;
 
             //плановые накопления
             while (y <= plan.amountWithInflation)
@@ -118,6 +117,14 @@ namespace курсач3
 
             //настроить таймер для обновления планов 
             //сделать линию накоплений на графике
+
+            foreach (Point item in points)
+            {
+                x = item.weeks;
+                y = item.sum;
+                chart.Series[1].Points.AddXY(x, y);
+            }
+            chart.Invalidate();
         }
 
         
