@@ -49,6 +49,8 @@ namespace курсач3
             FillList();
 
             AddPlanPanels();
+
+            FillListPoints();
         }
 
         public TabPage GetTabPagePlans() => tabPage1;

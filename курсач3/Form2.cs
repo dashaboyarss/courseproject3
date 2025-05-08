@@ -104,7 +104,7 @@ namespace курсач3
             progressBar.Size = new System.Drawing.Size(400, 40);
             progressBar.Location = new System.Drawing.Point(90, 510);
 
-            progressBar.Value = (int)((plan.startAmount + plan.startInvestAmount) / plan.amountWithInflation * 100);
+            progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
 
             this.Controls.Add(progressBar);
         }
@@ -113,7 +113,7 @@ namespace курсач3
         {
             Label labelProgress = new Label();
             labelProgress.Location = new System.Drawing.Point(200, 480);
-            labelProgress.Text = $"Накоплено: {plan.startAmount + plan.startInvestAmount} / {plan.amountWithInflation}";
+            labelProgress.Text = $"Накоплено: {plan.currentAmount + plan.currentInvestAmount} / {plan.amountWithInflation}";
             labelProgress.Size = new System.Drawing.Size(224, 13);
 
             this.Controls.Add(labelProgress);
