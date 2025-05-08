@@ -26,7 +26,7 @@ namespace курсач3
             else
             {
                 if (countPanel % 4 == 0) lines = countPanel / 4 + 1;
-                else lines = countPanel / 4;
+                else lines = countPanel / 4 + 1;
                 columns = countPanel % 4 + 1;
             }
 

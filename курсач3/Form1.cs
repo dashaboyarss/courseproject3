@@ -110,8 +110,9 @@ namespace курсач3
                         double currentInvestAmount = double.Parse(ws.Cell($"N{count}").Value.ToString());
                         int timeLeft = int.Parse(ws.Cell($"O{count}").Value.ToString());
                         string date = ws.Cell($"P{count}").Value.ToString();
+                        int startPaymentAmount = int.Parse(ws.Cell($"R{count}").Value.ToString());
 
-                        Plan plan = new Plan(name, goal, startAmount, frequency, investPercent, investAmount, inflation, goalWithInflation, investIncome, time, paymentAmount, paymentCount, currentAmount, currentInvestAmount, date);
+                        Plan plan = new Plan(name, goal, startAmount, frequency, investPercent, investAmount, inflation, goalWithInflation, investIncome, time, paymentAmount, paymentCount, currentAmount, currentInvestAmount, date, startPaymentAmount);
                         plans.Add(plan);
                         countSavedPlan++;
 
@@ -296,7 +297,7 @@ namespace курсач3
                 investmentSum = Convert.ToDouble(investAmountTextBox.Text); //сумма в инвестициях
                 targetPeriod = Convert.ToInt32(timeTextBox.Text); //целевой срок наклопления
                 inflation = Convert.ToDouble(inflationTextBox.Text) / 100; //годовой процент инфляции
-                planPayments = new Payments(nameTextBox.Text, targetSum, startSum, frequencyComboBox.Text, investmentPerCent, investmentSum, targetPeriod, inflation);
+                planPayments = new Payments(nameTextBox.Text, targetSum, startSum, frequencyComboBox.Text, investmentPerCent, investmentSum, targetPeriod * 4, inflation);
                 if (planPayments.isCorrect)
                 {
                     bool checkSum = planPayments.CheckSum();
@@ -509,6 +510,7 @@ namespace курсач3
                 ws.Cell($"N1").Value = "Текущая сумма на инвестиционном счету";
                 ws.Cell($"O1").Value = "Оставшееся время";
                 ws.Cell($"P1").Value = "Время создания плана";
+                ws.Cell($"R1").Value = "Первоначальный размер взносов";
                 wbook.SaveAs("simple.xlsx");
 
                 
@@ -541,6 +543,7 @@ namespace курсач3
                         ws.Cell($"N{i}").Value = planPeriod.currentInvestAmount.ToString();
                         ws.Cell($"O{i}").Value = planPeriod.remainingTime.ToString();
                         ws.Cell($"P{i}").Value = planPeriod.date.ToString("d");
+                        ws.Cell($"R{i}").Value = planPeriod.startPaymentAmount.ToString();
 
                         countSavedPlan++;
                         break;
@@ -573,6 +576,7 @@ namespace курсач3
                 ws.Cell($"N1").Value = "Текущая сумма на инвестиционном счету";
                 ws.Cell($"O1").Value = "Оставшееся время";
                 ws.Cell($"P1").Value = "Время создания плана";
+                ws.Cell($"R1").Value = "Первоначальный размер взносов";
                 wbook.SaveAs("simple.xlsx");
             }
             using (wbook = new XLWorkbook(filePath))
@@ -603,6 +607,7 @@ namespace курсач3
                         ws.Cell($"N{i}").Value = planPayments.currentInvestAmount.ToString();
                         ws.Cell($"O{i}").Value = planPayments.remainingTime.ToString();
                         ws.Cell($"P{i}").Value = planPayments.date.ToString("d");
+                        ws.Cell($"R{i}").Value = planPeriod.startPaymentAmount.ToString();
 
                         break;
                     }

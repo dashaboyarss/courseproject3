@@ -22,6 +22,7 @@ namespace курсач3
         public int time;
         public double paymentAmount;
         public int countPayments;
+        public double startPaymentAmount;
         public bool isCorrect = true;
 
         public double currentAmount;
@@ -34,12 +35,17 @@ namespace курсач3
         {
             get
             {
-                DateTime creatingTime = date;/* new DateTime(2024, 4, 26);*/
+                DateTime creatingTime = date; 
                 DateTime currentTime = DateTime.Now;
                 TimeSpan difference = currentTime - creatingTime;
                 int weeks = difference.Days / 7; //прошло недель с момента сохранения плана
 
                 return time - weeks;
+            }
+            set //для тестов, потом убрать
+            {
+                
+                remainingTime = value;
             }
         }
 
@@ -165,7 +171,7 @@ namespace курсач3
         }
 
         public Plan(string name, int goalAmount, double startAmount, string frequency, double incomePercent, double investAmount, double inflation, double amountWithInflation, double investIncome, 
-            int time, double paymentAmount, int countPayments, double currentAmount, double currentInvestAmount/*, int timeLeft*/, string date)
+            int time, double paymentAmount, int countPayments, double currentAmount, double currentInvestAmount/*, int timeLeft*/, string date, int startPaymentAmount)
         {
             this.name = name;
             this.goalAmount = goalAmount;
@@ -181,6 +187,7 @@ namespace курсач3
             this.countPayments = countPayments;
             this.currentAmount = currentAmount;
             this.currentInvestAmount = currentInvestAmount;
+            this.startPaymentAmount = startPaymentAmount;
             //this.remainingTime = timeLeft;
             this.date = DateTime.Parse(date);
         }

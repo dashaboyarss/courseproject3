@@ -41,6 +41,7 @@ namespace курсач3
             Text = "Сохраненный план";
             Size = new System.Drawing.Size(1103, 711);
             BackColor = System.Drawing.Color.LightGray;
+            this.AutoScroll = true;
 
             nameTextBox = new TextBox();
             goalTextBox = new TextBox();
@@ -61,6 +62,7 @@ namespace курсач3
             
 
             this.Load += Form2_Load;
+            
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -365,8 +367,7 @@ namespace курсач3
         private void Button_AddData_Click(object sender, EventArgs e, Plan plan, TextBox amount)
         {
             int sum = ParseInt(amount.Text);
-            Period newPlan;
-            if (sum != -1)
+            if (sum != -1 && plan.currentAmount + plan.currentInvestAmount < plan.amountWithInflation)
             {
                 double currentSum = plan.currentAmount + sum;
                 
@@ -375,13 +376,11 @@ namespace курсач3
                 
                 if (sum < plan.paymentAmount || sum > plan.paymentAmount)
                 {
-                    
-                }
-                else
-                {
-                    countPayment = plan.countPayments--;
                     plan.currentAmount = currentSum;
-                    
+
+                    PaymentAmount(plan);
+                    plan.CountPayments();
+
                     SaveChanges(plan);
                     SavePoint(plan);
                     points.Add(new Point(plan.name, plan.currentAmount + plan.currentInvestAmount, plan.time - plan.RemainingTime));
@@ -389,7 +388,69 @@ namespace курсач3
                     MyChart.AddChartToForm(plan, points);
                     amount.Clear();
                 }
+                else
+                {
+                    plan.currentAmount = currentSum;
+
+                    PaymentAmount(plan);
+                    plan.CountPayments();
+
+                    SaveChanges(plan);
+                    SavePoint(plan);
+                    points.Add(new Point(plan.name, plan.currentAmount + plan.currentInvestAmount, plan.time - plan.RemainingTime));
+                    FillTextBoxes(plan);
+                    MyChart.AddChartToForm(plan, points);
+                    amount.Clear();
+                }
+
+                if (plan.currentAmount + plan.currentInvestAmount >= plan.amountWithInflation)
+                {
+                    MessageBox.Show("Цель достигнута!");
+                }
             }
+            else if (plan.currentAmount + plan.currentInvestAmount >= plan.amountWithInflation)
+            {
+                MessageBox.Show("Цель уже была достигнута!");
+            }
+        }
+
+        public void PaymentAmount(Plan plan)
+        {
+            double payment = 0;
+            double paymentSum = plan.amountWithInflation - plan.currentInvestAmount - plan.currentAmount;
+
+            if (plan.Frequency == "раз в неделю")
+            {
+                payment = paymentSum / plan.RemainingTime;
+            }
+            else if (plan.Frequency == "раз в 2 недели")
+            {
+                payment = paymentSum / plan.RemainingTime * 2;
+            }
+            else if (plan.Frequency == "раз в месяц")
+            {
+                payment = paymentSum / plan.RemainingTime * 4;
+            }
+            else if (plan.Frequency == "раз в 3 месяца")
+            {
+                //if (this.Time % 3 == 0) payment = paymentSum / (this.Time / 3);
+                /*else*/
+                payment = paymentSum / plan.RemainingTime * 12;
+            }
+            else if (plan.Frequency == "раз в полгода")
+            {
+                //if (this.Time % 6 == 0) payment = paymentSum / (this.Time / 6);
+                /*else*/
+                payment = paymentSum / plan.RemainingTime * 24;
+            }
+            else if (plan.Frequency == "раз в год")
+            {
+                //if (this.Time % 12 == 0) payment = paymentSum / (this.Time / 12);
+                /*else*/
+                payment = paymentSum / plan.RemainingTime * 48;
+            }
+            plan.paymentAmount = payment;
+
         }
 
         private void SavePoint(Plan plan)
@@ -437,7 +498,7 @@ namespace курсач3
                 {
                     if (ws.Cell($"A{count}").Value.ToString() == plan.name)
                     {
-                        
+                        ws.Cell($"K{count}").Value = plan.paymentAmount;
                         ws.Cell($"M{count}").Value = plan.currentAmount;
                         ws.Cell($"N{count}").Value = plan.currentInvestAmount;
                         ws.Cell($"J{count}").Value = plan.investIncome;

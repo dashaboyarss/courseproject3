@@ -14,6 +14,7 @@ namespace курсач3
             goalAmount, startAmount, frequency, incomePercent, investAmount, inflation)
         {
             this.paymentAmount = paymentAmount;
+            this.startPaymentAmount = paymentAmount;
         }
 
         public double PaymentAmount

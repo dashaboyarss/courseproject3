@@ -83,7 +83,7 @@ namespace курсач3
 
         private static void FillChart(Plan plan, List<Point> points)
         {
-            double payment = plan.paymentAmount;
+            double payment = plan.startPaymentAmount;
             double step = Form1.Step(plan.frequency);
             double x = 0;
             double y = plan.startAmount + plan.startInvestAmount;
@@ -95,7 +95,7 @@ namespace курсач3
             chart.Series[1].IsVisibleInLegend = true;
 
             //плановые накопления
-            while (y <= plan.amountWithInflation)
+            while (x <= plan.time / 4)
             {
                 chart.Series[0].Points.AddXY(x, y);
                 x+= step;
