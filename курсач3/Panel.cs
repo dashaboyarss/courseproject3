@@ -37,6 +37,7 @@ namespace курсач3
             //создание блока и установка характеристик
             System.Windows.Forms.Panel newPanel = new System.Windows.Forms.Panel();
             newPanel.Size = new Size(160, 250);
+
             if (countPanel == 0)//установка расположения первого блока
             {
                 newPanel.Location = new System.Drawing.Point(60, 50);

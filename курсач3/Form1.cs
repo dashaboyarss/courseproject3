@@ -654,6 +654,18 @@ namespace курсач3
                 series.Points.Clear(); // Очищает точки данных, но оставляет серию
             }
         }
+
+        private void HelpButton_Click_1(object sender, EventArgs e)
+        {
+            string fullPath = Path.Combine(Application.StartupPath, "FullHelp.chm");
+            Help.ShowHelp(this, fullPath);
+        }
+
+        private void HelpButton2_Click(object sender, EventArgs e)
+        {
+            string fullPath = Path.Combine(Application.StartupPath, "FullHelp.chm");
+            Help.ShowHelp(this, fullPath);
+        }
     }
 }
 

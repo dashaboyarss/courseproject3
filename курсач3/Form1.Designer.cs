@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.countPaymentsRichTextBox1 = new System.Windows.Forms.RichTextBox();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -97,6 +98,7 @@
             this.paymentTextBox = new System.Windows.Forms.TextBox();
             this.inflationTextBox2 = new System.Windows.Forms.TextBox();
             this.nameTextBox2 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
@@ -111,26 +113,25 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1081, 655);
+            this.tabControl1.Size = new System.Drawing.Size(1622, 1008);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.LightGray;
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(1073, 629);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1614, 975);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "МОИ ПЛАНЫ";
             // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.LightGray;
+            this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.label25);
             this.tabPage2.Controls.Add(this.countPaymentsRichTextBox1);
             this.tabPage2.Controls.Add(this.chart);
@@ -158,20 +159,28 @@
             this.tabPage2.Controls.Add(this.timeTextBox);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.goalAmountTextBox);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(1073, 629);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1614, 975);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "РАСЧЕТ ВЗНОСОВ";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(17, 903);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(109, 52);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "Помощь";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.HelpButton_Click_1);
             // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label25.Location = new System.Drawing.Point(619, 205);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Location = new System.Drawing.Point(928, 315);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(227, 26);
             this.label25.TabIndex = 27;
@@ -180,71 +189,66 @@
             // countPaymentsRichTextBox1
             // 
             this.countPaymentsRichTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.countPaymentsRichTextBox1.Location = new System.Drawing.Point(623, 233);
-            this.countPaymentsRichTextBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.countPaymentsRichTextBox1.Location = new System.Drawing.Point(934, 358);
             this.countPaymentsRichTextBox1.Name = "countPaymentsRichTextBox1";
-            this.countPaymentsRichTextBox1.Size = new System.Drawing.Size(290, 35);
+            this.countPaymentsRichTextBox1.Size = new System.Drawing.Size(433, 52);
             this.countPaymentsRichTextBox1.TabIndex = 26;
             this.countPaymentsRichTextBox1.Text = "";
             // 
             // chart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
-            this.chart.Location = new System.Drawing.Point(511, 281);
-            this.chart.Margin = new System.Windows.Forms.Padding(2);
+            chartArea4.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart.Legends.Add(legend4);
+            this.chart.Location = new System.Drawing.Point(766, 432);
             this.chart.Name = "chart";
-            series1.BorderWidth = 4;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Navy;
-            series1.Legend = "Legend1";
-            series1.LegendText = "Накопления";
-            series1.Name = "Series1";
-            series2.BorderWidth = 4;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            series2.Legend = "Legend1";
-            series2.LegendText = "Целевая сумма";
-            series2.Name = "Series2";
-            this.chart.Series.Add(series1);
-            this.chart.Series.Add(series2);
-            this.chart.Size = new System.Drawing.Size(540, 340);
+            series7.BorderWidth = 4;
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series7.Color = System.Drawing.Color.Navy;
+            series7.Legend = "Legend1";
+            series7.LegendText = "Накопления";
+            series7.Name = "Series1";
+            series8.BorderWidth = 4;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            series8.Legend = "Legend1";
+            series8.LegendText = "Целевая сумма";
+            series8.Name = "Series2";
+            this.chart.Series.Add(series7);
+            this.chart.Series.Add(series8);
+            this.chart.Size = new System.Drawing.Size(810, 523);
             this.chart.TabIndex = 1;
             this.chart.Text = "chart";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title1.Name = "Title1";
-            title1.Text = "График накоплений";
-            this.chart.Titles.Add(title1);
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title4.Name = "Title1";
+            title4.Text = "График накоплений";
+            this.chart.Titles.Add(title4);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(80, 384);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Location = new System.Drawing.Point(120, 591);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(210, 13);
+            this.label12.Size = new System.Drawing.Size(316, 20);
             this.label12.TabIndex = 25;
             this.label12.Text = "Текущий годовой уровень инфляции(%):";
             // 
             // inflationTextBox
             // 
             this.inflationTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.inflationTextBox.Location = new System.Drawing.Point(83, 398);
-            this.inflationTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.inflationTextBox.Location = new System.Drawing.Point(124, 612);
             this.inflationTextBox.Name = "inflationTextBox";
-            this.inflationTextBox.Size = new System.Drawing.Size(133, 20);
+            this.inflationTextBox.Size = new System.Drawing.Size(198, 26);
             this.inflationTextBox.TabIndex = 24;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(83, 502);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Location = new System.Drawing.Point(124, 772);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(143, 40);
+            this.button2.Size = new System.Drawing.Size(214, 62);
             this.button2.TabIndex = 23;
             this.button2.Text = "СОХРАНИТЬ РАСЧЕТЫ";
             this.button2.UseVisualStyleBackColor = true;
@@ -254,8 +258,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(619, 140);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Location = new System.Drawing.Point(928, 215);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(184, 26);
             this.label11.TabIndex = 22;
@@ -266,8 +269,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(619, 80);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(928, 123);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(235, 26);
             this.label10.TabIndex = 21;
@@ -278,8 +280,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(619, 24);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(928, 37);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(392, 26);
             this.label9.TabIndex = 20;
@@ -288,40 +289,36 @@
             // paymentRichTextBox
             // 
             this.paymentRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.paymentRichTextBox.Location = new System.Drawing.Point(623, 168);
-            this.paymentRichTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.paymentRichTextBox.Location = new System.Drawing.Point(934, 258);
             this.paymentRichTextBox.Name = "paymentRichTextBox";
-            this.paymentRichTextBox.Size = new System.Drawing.Size(290, 35);
+            this.paymentRichTextBox.Size = new System.Drawing.Size(433, 52);
             this.paymentRichTextBox.TabIndex = 19;
             this.paymentRichTextBox.Text = "";
             // 
             // investIncomeRichTextBox
             // 
             this.investIncomeRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.investIncomeRichTextBox.Location = new System.Drawing.Point(624, 105);
-            this.investIncomeRichTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.investIncomeRichTextBox.Location = new System.Drawing.Point(936, 162);
             this.investIncomeRichTextBox.Name = "investIncomeRichTextBox";
-            this.investIncomeRichTextBox.Size = new System.Drawing.Size(290, 33);
+            this.investIncomeRichTextBox.Size = new System.Drawing.Size(433, 49);
             this.investIncomeRichTextBox.TabIndex = 18;
             this.investIncomeRichTextBox.Text = "";
             // 
             // newGoalAmountRichTextBox
             // 
             this.newGoalAmountRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.newGoalAmountRichTextBox.Location = new System.Drawing.Point(624, 49);
-            this.newGoalAmountRichTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.newGoalAmountRichTextBox.Location = new System.Drawing.Point(936, 75);
             this.newGoalAmountRichTextBox.Name = "newGoalAmountRichTextBox";
-            this.newGoalAmountRichTextBox.Size = new System.Drawing.Size(290, 29);
+            this.newGoalAmountRichTextBox.Size = new System.Drawing.Size(433, 42);
             this.newGoalAmountRichTextBox.TabIndex = 17;
             this.newGoalAmountRichTextBox.Text = "";
             this.newGoalAmountRichTextBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(83, 439);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(124, 675);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 44);
+            this.button1.Size = new System.Drawing.Size(165, 68);
             this.button1.TabIndex = 16;
             this.button1.Text = "РАССЧИТАТЬ";
             this.button1.UseVisualStyleBackColor = true;
@@ -330,48 +327,43 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(82, 32);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(123, 49);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 13);
+            this.label8.Size = new System.Drawing.Size(128, 20);
             this.label8.TabIndex = 15;
             this.label8.Text = "Название цели:";
             // 
             // nameTextBox
             // 
             this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nameTextBox.Location = new System.Drawing.Point(83, 47);
-            this.nameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.nameTextBox.Location = new System.Drawing.Point(124, 72);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(169, 20);
+            this.nameTextBox.Size = new System.Drawing.Size(252, 26);
             this.nameTextBox.TabIndex = 14;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(82, 215);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(123, 331);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(224, 13);
+            this.label7.Size = new System.Drawing.Size(341, 20);
             this.label7.TabIndex = 13;
             this.label7.Text = "Ожидаемая доходность от инвестиций (%):";
             // 
             // incomePercentTextBox
             // 
             this.incomePercentTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.incomePercentTextBox.Location = new System.Drawing.Point(83, 230);
-            this.incomePercentTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.incomePercentTextBox.Location = new System.Drawing.Point(124, 354);
             this.incomePercentTextBox.Name = "incomePercentTextBox";
-            this.incomePercentTextBox.Size = new System.Drawing.Size(131, 20);
+            this.incomePercentTextBox.Size = new System.Drawing.Size(196, 26);
             this.incomePercentTextBox.TabIndex = 12;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(80, 266);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(120, 409);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(177, 13);
+            this.label6.Size = new System.Drawing.Size(261, 20);
             this.label6.TabIndex = 11;
             this.label6.Text = "Сумма на инвестиционном счету:";
             this.label6.Click += new System.EventHandler(this.label6_Click);
@@ -379,10 +371,9 @@
             // investAmountTextBox
             // 
             this.investAmountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.investAmountTextBox.Location = new System.Drawing.Point(83, 281);
-            this.investAmountTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.investAmountTextBox.Location = new System.Drawing.Point(124, 432);
             this.investAmountTextBox.Name = "investAmountTextBox";
-            this.investAmountTextBox.Size = new System.Drawing.Size(131, 20);
+            this.investAmountTextBox.Size = new System.Drawing.Size(196, 26);
             this.investAmountTextBox.TabIndex = 10;
             // 
             // frequencyComboBox
@@ -395,83 +386,76 @@
             "раз в 3 месяца",
             "раз в полгода",
             "раз в год"});
-            this.frequencyComboBox.Location = new System.Drawing.Point(83, 179);
-            this.frequencyComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.frequencyComboBox.Location = new System.Drawing.Point(124, 275);
             this.frequencyComboBox.Name = "frequencyComboBox";
-            this.frequencyComboBox.Size = new System.Drawing.Size(131, 21);
+            this.frequencyComboBox.Size = new System.Drawing.Size(194, 28);
             this.frequencyComboBox.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(82, 164);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(123, 252);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 13);
+            this.label4.Size = new System.Drawing.Size(143, 20);
             this.label4.TabIndex = 7;
             this.label4.Text = "Частота взносов:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(82, 118);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(123, 182);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(184, 13);
+            this.label3.Size = new System.Drawing.Size(271, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Начальная сумма без инвестиций:";
             // 
             // startSumTextBox
             // 
             this.startSumTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.startSumTextBox.Location = new System.Drawing.Point(83, 133);
-            this.startSumTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.startSumTextBox.Location = new System.Drawing.Point(124, 205);
             this.startSumTextBox.Name = "startSumTextBox";
-            this.startSumTextBox.Size = new System.Drawing.Size(131, 20);
+            this.startSumTextBox.Size = new System.Drawing.Size(196, 26);
             this.startSumTextBox.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(82, 320);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(123, 492);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(274, 13);
+            this.label2.Size = new System.Drawing.Size(402, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Желаемый срок достижения цели (кол-во месяцев):";
             // 
             // timeTextBox
             // 
             this.timeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.timeTextBox.Location = new System.Drawing.Point(83, 341);
-            this.timeTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.timeTextBox.Location = new System.Drawing.Point(124, 525);
             this.timeTextBox.Name = "timeTextBox";
-            this.timeTextBox.Size = new System.Drawing.Size(131, 20);
+            this.timeTextBox.Size = new System.Drawing.Size(196, 26);
             this.timeTextBox.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(80, 74);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(120, 114);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(103, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Сумма цели:";
             // 
             // goalAmountTextBox
             // 
             this.goalAmountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.goalAmountTextBox.Location = new System.Drawing.Point(83, 89);
-            this.goalAmountTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.goalAmountTextBox.Location = new System.Drawing.Point(124, 137);
             this.goalAmountTextBox.Name = "goalAmountTextBox";
-            this.goalAmountTextBox.Size = new System.Drawing.Size(133, 20);
+            this.goalAmountTextBox.Size = new System.Drawing.Size(198, 26);
             this.goalAmountTextBox.TabIndex = 0;
             this.goalAmountTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.LightGray;
+            this.tabPage3.Controls.Add(this.button4);
             this.tabPage3.Controls.Add(this.label24);
             this.tabPage3.Controls.Add(this.countPaymentsRichTextBox2);
             this.tabPage3.Controls.Add(this.chart1);
@@ -500,10 +484,9 @@
             this.tabPage3.Controls.Add(this.paymentTextBox);
             this.tabPage3.Controls.Add(this.inflationTextBox2);
             this.tabPage3.Controls.Add(this.nameTextBox2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1073, 629);
+            this.tabPage3.Size = new System.Drawing.Size(1614, 975);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "РАСЧЕТ СРОКА";
             // 
@@ -511,8 +494,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label24.Location = new System.Drawing.Point(619, 200);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Location = new System.Drawing.Point(928, 308);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(227, 26);
             this.label24.TabIndex = 27;
@@ -521,52 +503,49 @@
             // 
             // countPaymentsRichTextBox2
             // 
-            this.countPaymentsRichTextBox2.Location = new System.Drawing.Point(624, 228);
-            this.countPaymentsRichTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.countPaymentsRichTextBox2.Location = new System.Drawing.Point(936, 351);
             this.countPaymentsRichTextBox2.Name = "countPaymentsRichTextBox2";
-            this.countPaymentsRichTextBox2.Size = new System.Drawing.Size(290, 29);
+            this.countPaymentsRichTextBox2.Size = new System.Drawing.Size(433, 42);
             this.countPaymentsRichTextBox2.TabIndex = 26;
             this.countPaymentsRichTextBox2.Text = "";
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(508, 274);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
+            this.chart1.Location = new System.Drawing.Point(762, 422);
             this.chart1.Name = "chart1";
-            series3.BorderWidth = 4;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            series3.Legend = "Legend1";
-            series3.LegendText = "Целевая сумма";
-            series3.Name = "Series1";
-            series4.BorderWidth = 4;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            series4.Legend = "Legend1";
-            series4.LegendText = "Накопления";
-            series4.Name = "Series2";
-            this.chart1.Series.Add(series3);
-            this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(563, 353);
+            series5.BorderWidth = 4;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            series5.Legend = "Legend1";
+            series5.LegendText = "Целевая сумма";
+            series5.Name = "Series1";
+            series6.BorderWidth = 4;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            series6.Legend = "Legend1";
+            series6.LegendText = "Накопления";
+            series6.Name = "Series2";
+            this.chart1.Series.Add(series5);
+            this.chart1.Series.Add(series6);
+            this.chart1.Size = new System.Drawing.Size(844, 543);
             this.chart1.TabIndex = 25;
             this.chart1.Text = "chart1";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title2.Name = "Title1";
-            title2.Text = "График накоплений";
-            this.chart1.Titles.Add(title2);
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title3.Name = "Title1";
+            title3.Text = "График накоплений";
+            this.chart1.Titles.Add(title3);
             // 
             // buttonSavePeriod
             // 
-            this.buttonSavePeriod.Location = new System.Drawing.Point(83, 497);
-            this.buttonSavePeriod.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSavePeriod.Location = new System.Drawing.Point(124, 765);
             this.buttonSavePeriod.Name = "buttonSavePeriod";
-            this.buttonSavePeriod.Size = new System.Drawing.Size(141, 44);
+            this.buttonSavePeriod.Size = new System.Drawing.Size(212, 68);
             this.buttonSavePeriod.TabIndex = 24;
             this.buttonSavePeriod.Text = "СОХРАНИТЬ РАСЧЕТЫ";
             this.buttonSavePeriod.UseVisualStyleBackColor = true;
@@ -574,10 +553,9 @@
             // 
             // countTimeButton
             // 
-            this.countTimeButton.Location = new System.Drawing.Point(83, 435);
-            this.countTimeButton.Margin = new System.Windows.Forms.Padding(2);
+            this.countTimeButton.Location = new System.Drawing.Point(124, 669);
             this.countTimeButton.Name = "countTimeButton";
-            this.countTimeButton.Size = new System.Drawing.Size(110, 44);
+            this.countTimeButton.Size = new System.Drawing.Size(165, 68);
             this.countTimeButton.TabIndex = 23;
             this.countTimeButton.Text = "РАССЧИТАТЬ";
             this.countTimeButton.UseVisualStyleBackColor = true;
@@ -587,8 +565,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label23.Location = new System.Drawing.Point(619, 84);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Location = new System.Drawing.Point(928, 129);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(235, 26);
             this.label23.TabIndex = 22;
@@ -598,8 +575,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label22.Location = new System.Drawing.Point(619, 142);
-            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Location = new System.Drawing.Point(928, 218);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(253, 26);
             this.label22.TabIndex = 21;
@@ -609,8 +585,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label21.Location = new System.Drawing.Point(619, 24);
-            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Location = new System.Drawing.Point(928, 37);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(392, 26);
             this.label21.TabIndex = 20;
@@ -619,19 +594,17 @@
             // investIncomeRichTextBox2
             // 
             this.investIncomeRichTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.investIncomeRichTextBox2.Location = new System.Drawing.Point(623, 112);
-            this.investIncomeRichTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.investIncomeRichTextBox2.Location = new System.Drawing.Point(934, 172);
             this.investIncomeRichTextBox2.Name = "investIncomeRichTextBox2";
-            this.investIncomeRichTextBox2.Size = new System.Drawing.Size(290, 29);
+            this.investIncomeRichTextBox2.Size = new System.Drawing.Size(433, 42);
             this.investIncomeRichTextBox2.TabIndex = 19;
             this.investIncomeRichTextBox2.Text = "";
             // 
             // timeRichTextBox2
             // 
-            this.timeRichTextBox2.Location = new System.Drawing.Point(623, 170);
-            this.timeRichTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.timeRichTextBox2.Location = new System.Drawing.Point(934, 262);
             this.timeRichTextBox2.Name = "timeRichTextBox2";
-            this.timeRichTextBox2.Size = new System.Drawing.Size(290, 29);
+            this.timeRichTextBox2.Size = new System.Drawing.Size(433, 42);
             this.timeRichTextBox2.TabIndex = 18;
             this.timeRichTextBox2.Text = "";
             // 
@@ -639,90 +612,81 @@
             // 
             this.newGoalAmountWithInflationRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.newGoalAmountWithInflationRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.newGoalAmountWithInflationRichTextBox.Location = new System.Drawing.Point(623, 52);
-            this.newGoalAmountWithInflationRichTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.newGoalAmountWithInflationRichTextBox.Location = new System.Drawing.Point(934, 80);
             this.newGoalAmountWithInflationRichTextBox.Name = "newGoalAmountWithInflationRichTextBox";
-            this.newGoalAmountWithInflationRichTextBox.Size = new System.Drawing.Size(290, 29);
+            this.newGoalAmountWithInflationRichTextBox.Size = new System.Drawing.Size(433, 42);
             this.newGoalAmountWithInflationRichTextBox.TabIndex = 17;
             this.newGoalAmountWithInflationRichTextBox.Text = "";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(82, 379);
-            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Location = new System.Drawing.Point(123, 583);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(169, 13);
+            this.label20.Size = new System.Drawing.Size(253, 20);
             this.label20.TabIndex = 16;
             this.label20.Text = "Текущий уровень инфляции (%):";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(82, 329);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Location = new System.Drawing.Point(123, 506);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(94, 13);
+            this.label19.Size = new System.Drawing.Size(134, 20);
             this.label19.TabIndex = 15;
             this.label19.Text = "Размер взносов:";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(80, 279);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Location = new System.Drawing.Point(120, 429);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(177, 13);
+            this.label18.Size = new System.Drawing.Size(261, 20);
             this.label18.TabIndex = 14;
             this.label18.Text = "Сумма на инвестиционном счету:";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(80, 229);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Location = new System.Drawing.Point(120, 352);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(224, 13);
+            this.label17.Size = new System.Drawing.Size(341, 20);
             this.label17.TabIndex = 13;
             this.label17.Text = "Ожидаемая доходность от инвестиций (%):";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(82, 230);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Location = new System.Drawing.Point(123, 354);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(0, 13);
+            this.label16.Size = new System.Drawing.Size(0, 20);
             this.label16.TabIndex = 12;
             this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(82, 179);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Location = new System.Drawing.Point(123, 275);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(97, 13);
+            this.label15.Size = new System.Drawing.Size(143, 20);
             this.label15.TabIndex = 11;
             this.label15.Text = "Частота взносов:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(80, 129);
-            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Location = new System.Drawing.Point(120, 198);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(184, 13);
+            this.label14.Size = new System.Drawing.Size(271, 20);
             this.label14.TabIndex = 10;
             this.label14.Text = "Начальная сумма без инвестиций:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(80, 79);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Location = new System.Drawing.Point(120, 122);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 13);
+            this.label13.Size = new System.Drawing.Size(103, 20);
             this.label13.TabIndex = 9;
             this.label13.Text = "Сумма цели:";
             // 
@@ -730,10 +694,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(80, 29);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(120, 45);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 13);
+            this.label5.Size = new System.Drawing.Size(128, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "Название цели:";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -748,83 +711,84 @@
             "раз в 3 месяца",
             "раз в полгода",
             "раз в год"});
-            this.frequencyComboBox1.Location = new System.Drawing.Point(83, 196);
-            this.frequencyComboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.frequencyComboBox1.Location = new System.Drawing.Point(124, 302);
             this.frequencyComboBox1.Name = "frequencyComboBox1";
-            this.frequencyComboBox1.Size = new System.Drawing.Size(131, 21);
+            this.frequencyComboBox1.Size = new System.Drawing.Size(194, 28);
             this.frequencyComboBox1.TabIndex = 7;
             // 
             // goalAmountTextBox2
             // 
             this.goalAmountTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.goalAmountTextBox2.Location = new System.Drawing.Point(83, 94);
-            this.goalAmountTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.goalAmountTextBox2.Location = new System.Drawing.Point(124, 145);
             this.goalAmountTextBox2.Name = "goalAmountTextBox2";
-            this.goalAmountTextBox2.Size = new System.Drawing.Size(131, 20);
+            this.goalAmountTextBox2.Size = new System.Drawing.Size(196, 26);
             this.goalAmountTextBox2.TabIndex = 6;
             // 
             // startAmountTextBox2
             // 
             this.startAmountTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.startAmountTextBox2.Location = new System.Drawing.Point(83, 144);
-            this.startAmountTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.startAmountTextBox2.Location = new System.Drawing.Point(124, 222);
             this.startAmountTextBox2.Name = "startAmountTextBox2";
-            this.startAmountTextBox2.Size = new System.Drawing.Size(131, 20);
+            this.startAmountTextBox2.Size = new System.Drawing.Size(196, 26);
             this.startAmountTextBox2.TabIndex = 5;
             this.startAmountTextBox2.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // investIncomeTextBox2
             // 
             this.investIncomeTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.investIncomeTextBox2.Location = new System.Drawing.Point(83, 245);
-            this.investIncomeTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.investIncomeTextBox2.Location = new System.Drawing.Point(124, 377);
             this.investIncomeTextBox2.Name = "investIncomeTextBox2";
-            this.investIncomeTextBox2.Size = new System.Drawing.Size(131, 20);
+            this.investIncomeTextBox2.Size = new System.Drawing.Size(196, 26);
             this.investIncomeTextBox2.TabIndex = 4;
             // 
             // investAmountTextBox2
             // 
             this.investAmountTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.investAmountTextBox2.Location = new System.Drawing.Point(83, 299);
-            this.investAmountTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.investAmountTextBox2.Location = new System.Drawing.Point(124, 460);
             this.investAmountTextBox2.Name = "investAmountTextBox2";
-            this.investAmountTextBox2.Size = new System.Drawing.Size(131, 20);
+            this.investAmountTextBox2.Size = new System.Drawing.Size(196, 26);
             this.investAmountTextBox2.TabIndex = 3;
             // 
             // paymentTextBox
             // 
             this.paymentTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.paymentTextBox.Location = new System.Drawing.Point(83, 349);
-            this.paymentTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.paymentTextBox.Location = new System.Drawing.Point(124, 537);
             this.paymentTextBox.Name = "paymentTextBox";
-            this.paymentTextBox.Size = new System.Drawing.Size(131, 20);
+            this.paymentTextBox.Size = new System.Drawing.Size(196, 26);
             this.paymentTextBox.TabIndex = 2;
             // 
             // inflationTextBox2
             // 
             this.inflationTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.inflationTextBox2.Location = new System.Drawing.Point(83, 398);
-            this.inflationTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.inflationTextBox2.Location = new System.Drawing.Point(124, 612);
             this.inflationTextBox2.Name = "inflationTextBox2";
-            this.inflationTextBox2.Size = new System.Drawing.Size(131, 20);
+            this.inflationTextBox2.Size = new System.Drawing.Size(196, 26);
             this.inflationTextBox2.TabIndex = 1;
             // 
             // nameTextBox2
             // 
             this.nameTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nameTextBox2.Location = new System.Drawing.Point(83, 44);
-            this.nameTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.nameTextBox2.Location = new System.Drawing.Point(124, 68);
             this.nameTextBox2.Name = "nameTextBox2";
-            this.nameTextBox2.Size = new System.Drawing.Size(169, 20);
+            this.nameTextBox2.Size = new System.Drawing.Size(252, 26);
             this.nameTextBox2.TabIndex = 0;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(14, 913);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(109, 52);
+            this.button4.TabIndex = 28;
+            this.button4.Text = "Помощь";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.HelpButton2_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1081, 655);
+            this.ClientSize = new System.Drawing.Size(1622, 1008);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Калькулятор финансовых целей";
             this.tabControl1.ResumeLayout(false);
@@ -899,6 +863,8 @@
         private System.Windows.Forms.RichTextBox countPaymentsRichTextBox2;
         private System.Windows.Forms.RichTextBox countPaymentsRichTextBox1;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 
