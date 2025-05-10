@@ -18,5 +18,12 @@ namespace курсач3
             this.sum = sum;
             this.weeks = weeks;
         }
+
+        public Point (Plan plan)
+        {
+            this.name = plan.name;
+            this.sum = plan.currentAmount + plan.currentInvestAmount;
+            this.weeks = plan.time - plan.RemainingTime;
+        }
     }
 }

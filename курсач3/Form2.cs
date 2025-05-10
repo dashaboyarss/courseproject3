@@ -30,6 +30,9 @@ namespace курсач3
         private RichTextBox countPaymentRichTextBox;
         private TextBox goalTimeTextBox;
 
+        private ProgressBar progressBar;
+        private Label labelProgress;
+
         Plan plan;
         List<Point> points = new List<Point>();
 
@@ -102,7 +105,7 @@ namespace курсач3
         {
             AddProgressLabel(plan);
 
-            ProgressBar progressBar = new ProgressBar();
+            progressBar = new ProgressBar();
 
             progressBar.Size = new System.Drawing.Size(400, 40);
             progressBar.Location = new System.Drawing.Point(90, 510);
@@ -251,7 +254,7 @@ namespace курсач3
 
         private void AddProgressLabel(Plan plan)
         {
-            Label labelProgress = new Label();
+            labelProgress = new Label();
             labelProgress.Location = new System.Drawing.Point(200, 480);
             labelProgress.Text = $"Накоплено: {plan.currentAmount + plan.currentInvestAmount} / {plan.amountWithInflation}";
             labelProgress.Size = new System.Drawing.Size(224, 13);
@@ -523,7 +526,10 @@ namespace курсач3
                     SavePoint(plan);
                     points.Add(new Point(plan.name, plan.currentAmount + plan.currentInvestAmount, plan.time - plan.RemainingTime));
                     FillTextBoxes(plan);
-                    MyChart.AddChartToForm(plan, points);
+                    Point newPoint = new Point(plan);
+                    MyChart.AddPoint(newPoint);
+                    progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
+                    labelProgress.Text = $"Накоплено: {plan.currentAmount + plan.currentInvestAmount} / {plan.amountWithInflation}";
                     amount.Clear();
                 }
                 else
@@ -537,7 +543,10 @@ namespace курсач3
                     SavePoint(plan);
                     points.Add(new Point(plan.name, plan.currentAmount + plan.currentInvestAmount, plan.time - plan.RemainingTime));
                     FillTextBoxes(plan);
-                    MyChart.AddChartToForm(plan, points);
+                    Point newPoint = new Point(plan);
+                    MyChart.AddPoint(newPoint);
+                    progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
+                    labelProgress.Text = $"Накоплено: {plan.currentAmount + plan.currentInvestAmount} / {plan.amountWithInflation}";
                     amount.Clear();
                 }
 
@@ -571,20 +580,14 @@ namespace курсач3
             }
             else if (plan.Frequency == "раз в 3 месяца")
             {
-                //if (this.Time % 3 == 0) payment = paymentSum / (this.Time / 3);
-                /*else*/
                 payment = paymentSum / plan.RemainingTime * 12;
             }
             else if (plan.Frequency == "раз в полгода")
             {
-                //if (this.Time % 6 == 0) payment = paymentSum / (this.Time / 6);
-                /*else*/
                 payment = paymentSum / plan.RemainingTime * 24;
             }
             else if (plan.Frequency == "раз в год")
             {
-                //if (this.Time % 12 == 0) payment = paymentSum / (this.Time / 12);
-                /*else*/
                 payment = paymentSum / plan.RemainingTime * 48;
             }
             plan.paymentAmount = payment;

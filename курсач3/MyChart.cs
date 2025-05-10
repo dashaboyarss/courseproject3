@@ -100,14 +100,14 @@ namespace курсач3
             form.Controls.Add(chart);
         }
 
-        private static void FillChart(Plan plan, List<Point> points)
+        public static void FillChart(Plan plan, List<Point> points)
         {
             double payment = plan.startPaymentAmount;
             double step = Form1.Step(plan.frequency);
             double x = 0;
             double y = plan.startAmount + plan.startInvestAmount;
             chart.Series[0].Points.Clear();
-            chart.Series[1].Points.Clear();
+            //chart.Series[1].Points.Clear();
             chart.Series[2].Points.Clear();
 
             chart.Series[1].Enabled = true;
@@ -136,7 +136,6 @@ namespace курсач3
 
             //настроить таймер для обновления планов 
             //сделать линию накоплений на графике
-
             foreach (Point item in points)
             {
                 x = item.weeks;
@@ -146,6 +145,13 @@ namespace курсач3
             chart.Invalidate();
         }
 
-        
+        public static void AddPoint(Point point)
+        {
+            double x = point.weeks;
+            double y = point.sum;
+
+            chart.Series[1].Points.AddXY(x, y);
+        }
+
     }
 }
