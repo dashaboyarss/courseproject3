@@ -72,6 +72,7 @@ namespace курсач3
             AddPaymentBlock(plan);
             CountInvestAmount(plan);
             FillTextBoxes(plan);
+            AddDeleteButton(plan);
 
             points.Add(new Point(plan.name, plan.startAmount + plan.startInvestAmount, 0));
             FillHistory(plan.name);
@@ -109,6 +110,143 @@ namespace курсач3
             progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
 
             this.Controls.Add(progressBar);
+        }
+
+        private void AddDeleteButton(Plan plan)
+        {
+            Button button = new Button();
+            button.Text = "УДАЛИТЬ ПЛАН";
+            button.Size = new System.Drawing.Size(140, 44);
+            button.Location = new System.Drawing.Point(50, 600);
+
+            button.Click += (sender, e) => Button_DeletePlan_Click(sender, e, plan);
+
+            this.Controls.Add(button);
+        }
+
+        private void Button_DeletePlan_Click(object sender, EventArgs e, Plan plan)
+        {
+            this.Close();
+            DeleteFromListPlans(plan);
+            DeletePlanData(plan);
+            DeletePlanHistory(plan);
+            DeletePlanHistoryFromList(plan);
+
+            MessageBox.Show($"План '{plan.name}' будет удален после закрытия приложения");
+        }
+
+        private void DeletePlanHistoryFromList(Plan plan)
+        {
+            foreach (Point item in points)
+            {
+                if (item.name == plan.name)
+                {
+                    points.Remove(item);
+                }
+            }
+        }
+
+        private void DeletePlanHistory(Plan plan)
+        {
+            int count = points.Count;
+            var historyBook = new XLWorkbook();
+            string filePath = "history.xlsx";
+
+            using (historyBook = new XLWorkbook(filePath))
+            {
+                var ws = historyBook.Worksheet(1);
+
+                for (int i = 0; i < count; i++)
+                {
+                    int j = 2;
+                    while (ws.Cell($"A{count}").Value.ToString() != plan.name)
+                    {
+                        j++;
+                    }
+                    j++;
+
+                    while (!ws.Cell($"A{count}").IsEmpty())
+                    {
+                        ws.Cell($"A{j - 1}").Value = ws.Cell($"A{j}").Value;
+                        ws.Cell($"B{j - 1}").Value = ws.Cell($"B{j}").Value;
+                        ws.Cell($"C{j - 1}").Value = ws.Cell($"C{j}").Value;
+                        j++;
+                    }
+
+                    ws.Cell($"A{j - 1}").Clear();
+                    ws.Cell($"B{j - 1}").Clear();
+                    ws.Cell($"C{j - 1}").Clear();
+
+                }
+                historyBook.Save();
+            }
+            
+        }
+
+        private void DeleteFromListPlans(Plan plan)
+        {
+            Form1.plans.Remove(plan);
+        }
+
+        private void DeletePlanData(Plan plan)
+        {
+            var wbook = new XLWorkbook();
+            string filePath = "simple.xlsx";
+
+            using (wbook = new XLWorkbook(filePath))
+            {
+                int count = 2;
+                var ws = wbook.Worksheet(1);
+
+                //поиск нужного плана
+                while (ws.Cell($"A{count}").Value.ToString() != plan.name)
+                {
+                    count++;
+                }
+                
+                count++;
+                //удаление данных о плане
+                while (!ws.Cell($"A{count}").IsEmpty())
+                {
+                    ws.Cell($"A{count - 1}").Value = ws.Cell($"A{count}").Value;
+                    ws.Cell($"B{count - 1}").Value = ws.Cell($"B{count}").Value;
+                    ws.Cell($"C{count - 1}").Value = ws.Cell($"C{count}").Value;
+                    ws.Cell($"D{count - 1}").Value = ws.Cell($"D{count}").Value;
+                    ws.Cell($"E{count - 1}").Value = ws.Cell($"E{count}").Value;
+                    ws.Cell($"F{count - 1}").Value = ws.Cell($"F{count}").Value;
+                    ws.Cell($"G{count - 1}").Value = ws.Cell($"G{count}").Value;
+                    ws.Cell($"H{count - 1}").Value = ws.Cell($"H{count}").Value;
+                    ws.Cell($"I{count - 1}").Value = ws.Cell($"I{count}").Value;
+                    ws.Cell($"J{count - 1}").Value = ws.Cell($"J{count}").Value;
+                    ws.Cell($"K{count - 1}").Value = ws.Cell($"K{count}").Value;
+                    ws.Cell($"L{count - 1}").Value = ws.Cell($"L{count}").Value;
+                    ws.Cell($"M{count - 1}").Value = ws.Cell($"M{count}").Value;
+                    ws.Cell($"N{count - 1}").Value = ws.Cell($"N{count}").Value;
+                    ws.Cell($"O{count - 1}").Value = ws.Cell($"O{count}").Value;
+                    ws.Cell($"P{count - 1}").Value = ws.Cell($"P{count}").Value;
+                    ws.Cell($"R{count - 1}").Value = ws.Cell($"R{count}").Value;
+                    count++;
+                }
+
+                ws.Cell($"A{count -1}").Clear();
+                ws.Cell($"B{count - 1}").Clear();
+                ws.Cell($"C{count - 1}").Clear();
+                ws.Cell($"D{count - 1}").Clear();
+                ws.Cell($"E{count - 1}").Clear();
+                ws.Cell($"F{count - 1}").Clear();
+                ws.Cell($"G{count - 1}").Clear();
+                ws.Cell($"H{count - 1}").Clear();
+                ws.Cell($"I{count - 1}").Clear();
+                ws.Cell($"J{count - 1}").Clear();
+                ws.Cell($"K{count - 1}").Clear();
+                ws.Cell($"L{count - 1}").Clear();
+                ws.Cell($"M{count - 1}").Clear();
+                ws.Cell($"N{count - 1}").Clear();
+                ws.Cell($"O{count}").Clear();
+                ws.Cell($"P{count}").Clear();
+                ws.Cell($"R{count}").Clear();
+                wbook.Save();
+            }
         }
 
         private void AddProgressLabel(Plan plan)

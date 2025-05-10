@@ -16,7 +16,7 @@ namespace курсач3
 {
     public partial class Form1 : Form
     {
-        private List<Plan> plans = new List<Plan>();
+        public static List<Plan> plans = new List<Plan>();
 
         public static  List<Point> points = new List<Point>();
         
@@ -110,7 +110,7 @@ namespace курсач3
                         double currentInvestAmount = double.Parse(ws.Cell($"N{count}").Value.ToString());
                         int timeLeft = int.Parse(ws.Cell($"O{count}").Value.ToString());
                         string date = ws.Cell($"P{count}").Value.ToString();
-                        int startPaymentAmount = int.Parse(ws.Cell($"R{count}").Value.ToString());
+                        double startPaymentAmount = double.Parse(ws.Cell($"R{count}").Value.ToString());
 
                         Plan plan = new Plan(name, goal, startAmount, frequency, investPercent, investAmount, inflation, goalWithInflation, investIncome, time, paymentAmount, paymentCount, currentAmount, currentInvestAmount, date, startPaymentAmount);
                         plans.Add(plan);
@@ -436,14 +436,21 @@ namespace курсач3
 
         private void button4_Click_Period(object sender, EventArgs e)
         {
-            plans.Add(planPeriod);
+            if (plans.Count == 8)
+            {
+                MessageBox.Show("Сохранено максимальное количество планов!\nЧтобы добавить новый план необходимо удалить один из ранее сохраненных!");
+            }
+            else
+            {
+                plans.Add(planPeriod);
 
-            SavePlanPeriod();
+                SavePlanPeriod();
 
-            Panel.AddPanel(planPeriod);
+                Panel.AddPanel(planPeriod);
 
-            ClearAllTextBoxesInTabPage(CurrentForm);
-            ClearChart1();
+                ClearAllTextBoxesInTabPage(CurrentForm);
+                ClearChart1();
+            }
         }
 
         public void ClearChart1()
@@ -525,7 +532,7 @@ namespace курсач3
                         MessageBox.Show("План с заданным именем уже существует!\nУкажите уникальное имя плана");
                         break;
                     }
-                    if (ws.Cell($"A{i}").IsEmpty())
+                    else if (ws.Cell($"A{i}").IsEmpty())
                     {
                         ws.Cell($"A{i}").Value = planPeriod.name.ToString();
                         ws.Cell($"B{i}").Value = planPeriod.GoalAmount.ToString();
@@ -607,7 +614,7 @@ namespace курсач3
                         ws.Cell($"N{i}").Value = planPayments.currentInvestAmount.ToString();
                         ws.Cell($"O{i}").Value = planPayments.remainingTime.ToString();
                         ws.Cell($"P{i}").Value = planPayments.date.ToString("d");
-                        ws.Cell($"R{i}").Value = planPeriod.startPaymentAmount.ToString();
+                        ws.Cell($"R{i}").Value = planPayments.startPaymentAmount.ToString();
 
                         break;
                     }
@@ -623,14 +630,21 @@ namespace курсач3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            plans.Add(planPayments);
+            if (plans.Count == 8)
+            {
+                MessageBox.Show("Сохранено максимальное количество планов!\nЧтобы добавить новый план необходимо удалить один из ранее сохраненных!");
+            }
+            else
+            {
+                plans.Add(planPayments);
 
-            SavePlanPayment();
+                SavePlanPayment();
 
-            Panel.AddPanel(planPayments);
+                Panel.AddPanel(planPayments);
 
-            ClearAllTextBoxesInTabPage(CurrentForm);
-            ClearChart2();
+                ClearAllTextBoxesInTabPage(CurrentForm);
+                ClearChart2();
+            }
         }
         public void ClearChart2()
         {

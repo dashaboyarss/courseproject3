@@ -72,6 +72,25 @@ namespace курсач3
             };
             chart.Series.Add(series3);
 
+            ChartArea legendArea = new ChartArea("LegendArea");
+            legendArea.Position.Auto = false;                
+            legendArea.Position.X = 80;                      
+            legendArea.Position.Y = 0;                     
+            legendArea.Position.Width = 30;                
+            legendArea.Position.Height = 14;                 
+            legendArea.BackColor = System.Drawing.Color.Transparent;        
+            legendArea.InnerPlotPosition.Auto = true;          
+            chart.ChartAreas.Add(legendArea);                   
+
+            Legend legend = new Legend("Legend");
+            legend.DockedToChartArea = "LegendArea"; 
+            legend.Docking = Docking.Right;                   
+            legend.Alignment = StringAlignment.Far;         
+            legend.LegendStyle = LegendStyle.Column;          
+            legend.BackColor = System.Drawing.Color.Transparent; 
+            legend.Font = new Font("Arial", 7f, FontStyle.Regular);
+            chart.Legends.Add(legend);
+
             //Строим график
             FillChart(plan, points);
 

@@ -17,7 +17,7 @@ namespace курсач3
             get => time;
             set
             {
-                if (value >= 0) time = value * 4;
+                if (value >= 0) time = value;
                 else
                 {
                     MessageBox.Show("Некорректно заполнено поле 'Срок достижения цели'! Введите целое неотрицательное число");

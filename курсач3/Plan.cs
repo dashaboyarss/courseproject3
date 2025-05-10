@@ -171,7 +171,7 @@ namespace курсач3
         }
 
         public Plan(string name, int goalAmount, double startAmount, string frequency, double incomePercent, double investAmount, double inflation, double amountWithInflation, double investIncome, 
-            int time, double paymentAmount, int countPayments, double currentAmount, double currentInvestAmount/*, int timeLeft*/, string date, int startPaymentAmount)
+            int time, double paymentAmount, int countPayments, double currentAmount, double currentInvestAmount/*, int timeLeft*/, string date, double startPaymentAmount)
         {
             this.name = name;
             this.goalAmount = goalAmount;
