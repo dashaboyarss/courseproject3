@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea23 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend23 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series45 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series46 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title23 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea24 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend24 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series47 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series48 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title24 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -70,6 +70,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.goalAmountTextBox = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.countPaymentsRichTextBox2 = new System.Windows.Forms.RichTextBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -98,7 +99,7 @@
             this.paymentTextBox = new System.Windows.Forms.TextBox();
             this.inflationTextBox2 = new System.Windows.Forms.TextBox();
             this.nameTextBox2 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
@@ -112,9 +113,12 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider1.SetHelpKeyword(this.tabControl1, "51");
+            this.helpProvider1.SetHelpNavigator(this.tabControl1, System.Windows.Forms.HelpNavigator.Topic);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
+            this.helpProvider1.SetShowHelp(this.tabControl1, true);
             this.tabControl1.Size = new System.Drawing.Size(1622, 1008);
             this.tabControl1.TabIndex = 0;
             // 
@@ -159,9 +163,12 @@
             this.tabPage2.Controls.Add(this.timeTextBox);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.goalAmountTextBox);
+            this.helpProvider1.SetHelpKeyword(this.tabPage2, "");
+            this.helpProvider1.SetHelpNavigator(this.tabPage2, System.Windows.Forms.HelpNavigator.Topic);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.helpProvider1.SetShowHelp(this.tabPage2, true);
             this.tabPage2.Size = new System.Drawing.Size(1614, 975);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "РАСЧЕТ ВЗНОСОВ";
@@ -197,35 +204,35 @@
             // 
             // chart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart.Legends.Add(legend4);
+            chartArea23.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea23);
+            legend23.Name = "Legend1";
+            this.chart.Legends.Add(legend23);
             this.chart.Location = new System.Drawing.Point(766, 432);
             this.chart.Name = "chart";
-            series7.BorderWidth = 4;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Color = System.Drawing.Color.Navy;
-            series7.Legend = "Legend1";
-            series7.LegendText = "Накопления";
-            series7.Name = "Series1";
-            series8.BorderWidth = 4;
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series8.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            series8.Legend = "Legend1";
-            series8.LegendText = "Целевая сумма";
-            series8.Name = "Series2";
-            this.chart.Series.Add(series7);
-            this.chart.Series.Add(series8);
+            series45.BorderWidth = 4;
+            series45.ChartArea = "ChartArea1";
+            series45.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series45.Color = System.Drawing.Color.Navy;
+            series45.Legend = "Legend1";
+            series45.LegendText = "Накопления";
+            series45.Name = "Series1";
+            series46.BorderWidth = 4;
+            series46.ChartArea = "ChartArea1";
+            series46.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series46.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            series46.Legend = "Legend1";
+            series46.LegendText = "Целевая сумма";
+            series46.Name = "Series2";
+            this.chart.Series.Add(series45);
+            this.chart.Series.Add(series46);
             this.chart.Size = new System.Drawing.Size(810, 523);
             this.chart.TabIndex = 1;
             this.chart.Text = "chart";
-            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title4.Name = "Title1";
-            title4.Text = "График накоплений";
-            this.chart.Titles.Add(title4);
+            title23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title23.Name = "Title1";
+            title23.Text = "График накоплений";
+            this.chart.Titles.Add(title23);
             // 
             // label12
             // 
@@ -484,11 +491,24 @@
             this.tabPage3.Controls.Add(this.paymentTextBox);
             this.tabPage3.Controls.Add(this.inflationTextBox2);
             this.tabPage3.Controls.Add(this.nameTextBox2);
+            this.helpProvider1.SetHelpKeyword(this.tabPage3, "");
+            this.helpProvider1.SetHelpNavigator(this.tabPage3, System.Windows.Forms.HelpNavigator.Topic);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
+            this.helpProvider1.SetShowHelp(this.tabPage3, true);
             this.tabPage3.Size = new System.Drawing.Size(1614, 975);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "РАСЧЕТ СРОКА";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(14, 913);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(109, 52);
+            this.button4.TabIndex = 28;
+            this.button4.Text = "Помощь";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.HelpButton2_Click);
             // 
             // label24
             // 
@@ -511,35 +531,35 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea24.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea24);
+            legend24.Name = "Legend1";
+            this.chart1.Legends.Add(legend24);
             this.chart1.Location = new System.Drawing.Point(762, 422);
             this.chart1.Name = "chart1";
-            series5.BorderWidth = 4;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            series5.Legend = "Legend1";
-            series5.LegendText = "Целевая сумма";
-            series5.Name = "Series1";
-            series6.BorderWidth = 4;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series6.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            series6.Legend = "Legend1";
-            series6.LegendText = "Накопления";
-            series6.Name = "Series2";
-            this.chart1.Series.Add(series5);
-            this.chart1.Series.Add(series6);
+            series47.BorderWidth = 4;
+            series47.ChartArea = "ChartArea1";
+            series47.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series47.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            series47.Legend = "Legend1";
+            series47.LegendText = "Целевая сумма";
+            series47.Name = "Series1";
+            series48.BorderWidth = 4;
+            series48.ChartArea = "ChartArea1";
+            series48.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series48.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            series48.Legend = "Legend1";
+            series48.LegendText = "Накопления";
+            series48.Name = "Series2";
+            this.chart1.Series.Add(series47);
+            this.chart1.Series.Add(series48);
             this.chart1.Size = new System.Drawing.Size(844, 543);
             this.chart1.TabIndex = 25;
             this.chart1.Text = "chart1";
-            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title3.Name = "Title1";
-            title3.Text = "График накоплений";
-            this.chart1.Titles.Add(title3);
+            title24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title24.Name = "Title1";
+            title24.Text = "График накоплений";
+            this.chart1.Titles.Add(title24);
             // 
             // buttonSavePeriod
             // 
@@ -773,15 +793,9 @@
             this.nameTextBox2.Size = new System.Drawing.Size(252, 26);
             this.nameTextBox2.TabIndex = 0;
             // 
-            // button4
+            // helpProvider1
             // 
-            this.button4.Location = new System.Drawing.Point(14, 913);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(109, 52);
-            this.button4.TabIndex = 28;
-            this.button4.Text = "Помощь";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.HelpButton2_Click);
+            this.helpProvider1.HelpNamespace = "FullHelp.chm";
             // 
             // Form1
             // 
@@ -790,6 +804,7 @@
             this.ClientSize = new System.Drawing.Size(1622, 1008);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
+            this.helpProvider1.SetShowHelp(this, false);
             this.Text = "Калькулятор финансовых целей";
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -865,6 +880,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
 

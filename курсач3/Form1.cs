@@ -51,6 +51,49 @@ namespace курсач3
             AddPlanPanels();
 
             FillListPoints();
+
+            // Подписываемся на событие смены вкладки
+            tabControl1.SelectedIndexChanged += TabControl_SelectedIndexChanged;
+
+            // Указываем путь к файлу справки
+            helpProvider1.HelpNamespace = "FullHelp.chm";
+        }
+
+        // Обрабатываем нажатие клавиши F1
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if ((keyData & ~Keys.Modifiers) == Keys.F1)
+            {
+                string helpKeyword = helpProvider1.GetHelpKeyword(this);
+                if (!string.IsNullOrEmpty(helpKeyword))
+                {
+                    // Показываем раздел справки по нажатию F1
+                    Help.ShowHelp(this, helpProvider1.HelpNamespace, HelpNavigator.Topic, helpKeyword);
+                }
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TabPage selectedTab = tabControl1.SelectedTab;
+
+            switch (selectedTab.Name)
+            {
+                case "tabPage3":
+                    helpProvider1.SetHelpKeyword(this, "56"); 
+                    break;
+                case "tabPage2":
+                    helpProvider1.SetHelpKeyword(this, "51"); 
+                    break;
+                case "tabPage1":
+                    helpProvider1.SetHelpKeyword(this, "20");
+                    break;
+                default:
+                    helpProvider1.SetHelpKeyword(this, "");
+                    break;
+            }
         }
 
         public TabPage GetTabPagePlans() => tabPage1;
