@@ -139,8 +139,7 @@ namespace курсач3
             progressBar.Size = new System.Drawing.Size(130, 20);
             progressBar.Location = new System.Drawing.Point(x + 15, y + 165);
 
-            if (plan.currentAmount + plan.currentInvestAmount >= plan.amountWithInflation) progressBar.Value = 100;
-            else progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
+            progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
 
             return progressBar;
         }

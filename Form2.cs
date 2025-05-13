@@ -110,8 +110,7 @@ namespace курсач3
             progressBar.Size = new System.Drawing.Size(400, 40);
             progressBar.Location = new System.Drawing.Point(90, 510);
 
-            if (plan.currentAmount + plan.currentInvestAmount >= plan.amountWithInflation) progressBar.Value = 100;
-            else progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
+            progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
 
             this.Controls.Add(progressBar);
         }
@@ -470,14 +469,9 @@ namespace курсач3
             currentSumTextBox.Text= plan.currentAmount.ToString();
             goalWithInflationRichTextBox.Text = plan.amountWithInflation.ToString();
             investIncomeRichTextBox.Text = plan.investIncome.ToString();
-
-            if (plan.currentAmount + plan.currentInvestAmount >= plan.amountWithInflation)  paymentAmountRichTextBox.Text = "0";
-            else paymentAmountRichTextBox.Text = plan.paymentAmount.ToString();
-
+            paymentAmountRichTextBox.Text = plan.paymentAmount.ToString();
             timeRichTextBox.Text = Plan.TimeToYears(plan.RemainingTime);
-
-            if (plan.currentAmount + plan.currentInvestAmount >= plan.amountWithInflation) countPaymentRichTextBox.Text = "0";
-            else countPaymentRichTextBox.Text = plan.countPayments.ToString();
+            countPaymentRichTextBox.Text = plan.countPayments.ToString();
         }
 
 
@@ -520,23 +514,41 @@ namespace курсач3
                 
                 int time;
                 int countPayment;
+                
+                if (sum < plan.paymentAmount || sum > plan.paymentAmount)
+                {
+                    plan.currentAmount = currentSum;
 
-                plan.currentAmount = currentSum;
+                    PaymentAmount(plan);
+                    plan.CountPayments();
 
-                PaymentAmount(plan);
-                plan.CountPayments();
+                    SaveChanges(plan);
+                    SavePoint(plan);
+                    points.Add(new Point(plan.name, plan.currentAmount + plan.currentInvestAmount, plan.time - plan.RemainingTime));
+                    FillTextBoxes(plan);
+                    Point newPoint = new Point(plan);
+                    MyChart.AddPoint(newPoint);
+                    progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
+                    labelProgress.Text = $"Накоплено: {plan.currentAmount + plan.currentInvestAmount} / {plan.amountWithInflation}";
+                    amount.Clear();
+                }
+                else
+                {
+                    plan.currentAmount = currentSum;
 
-                SaveChanges(plan);
-                SavePoint(plan);
-                points.Add(new Point(plan.name, plan.currentAmount + plan.currentInvestAmount, plan.time - plan.RemainingTime));
-                FillTextBoxes(plan);
-                Point newPoint = new Point(plan);
-                MyChart.AddPoint(newPoint);
-                if (plan.currentAmount + plan.currentInvestAmount >= plan.amountWithInflation) progressBar.Value = 100;
-                else progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
-                labelProgress.Text = $"Накоплено: {plan.currentAmount + plan.currentInvestAmount} / {plan.amountWithInflation}";
-                amount.Clear();
+                    PaymentAmount(plan);
+                    plan.CountPayments();
 
+                    SaveChanges(plan);
+                    SavePoint(plan);
+                    points.Add(new Point(plan.name, plan.currentAmount + plan.currentInvestAmount, plan.time - plan.RemainingTime));
+                    FillTextBoxes(plan);
+                    Point newPoint = new Point(plan);
+                    MyChart.AddPoint(newPoint);
+                    progressBar.Value = (int)((plan.currentAmount + plan.currentInvestAmount) / plan.amountWithInflation * 100);
+                    labelProgress.Text = $"Накоплено: {plan.currentAmount + plan.currentInvestAmount} / {plan.amountWithInflation}";
+                    amount.Clear();
+                }
 
                 if (plan.currentAmount + plan.currentInvestAmount >= plan.amountWithInflation)
                 {

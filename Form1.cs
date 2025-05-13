@@ -60,37 +60,37 @@ namespace курсач3
         }
 
         // Обрабатываем нажатие клавиши F1
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if ((keyData & ~Keys.Modifiers) == Keys.F1)
+            protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
             {
-                string helpKeyword = helpProvider1.GetHelpKeyword(tabControl1.SelectedTab); // Получаем HelpKeyword текущей вкладки
-
-                if (string.IsNullOrEmpty(helpKeyword))
+                if ((keyData & ~Keys.Modifiers) == Keys.F1)
                 {
-                    Help.ShowHelp(this, "FullHelp.chm", HelpNavigator.TableOfContents);
+                    string helpKeyword = helpProvider1.GetHelpKeyword(tabControl1.SelectedTab); // Получаем HelpKeyword текущей вкладки
+                    
+                    if (string.IsNullOrEmpty(helpKeyword))
+                    {
+                        Help.ShowHelp(this, "FullHelp.chm", HelpNavigator.TableOfContents);
+                    }
+                    else
+                    {
+                        Help.ShowHelp(this, "FullHelp.chm", HelpNavigator.TopicId, helpKeyword);
+                    }
                 }
-                else
-                {
-                    Help.ShowHelp(this, "FullHelp.chm", HelpNavigator.TopicId, helpKeyword);
-                }
+                return base.ProcessCmdKey(ref msg, keyData);
             }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
 
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             TabPage selectedTab = tabControl1.SelectedTab;
-
+            
             helpProvider1.SetHelpNavigator(selectedTab, HelpNavigator.TopicId);
 
             switch (selectedTab.Name)
             {
                 case "tabPage3":
-                    helpProvider1.SetHelpKeyword(selectedTab, "56");
+                    helpProvider1.SetHelpKeyword(selectedTab, "56"); 
                     break;
                 case "tabPage2":
-                    helpProvider1.SetHelpKeyword(selectedTab, "51");
+                    helpProvider1.SetHelpKeyword(selectedTab, "51"); 
                     break;
                 case "tabPage1":
                     helpProvider1.SetHelpKeyword(selectedTab, "83");
@@ -100,43 +100,6 @@ namespace курсач3
                     break;
             }
         }
-
-        //// Обрабатываем нажатие клавиши F1
-        //protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        //{
-        //    if ((keyData & ~Keys.Modifiers) == Keys.F1)
-        //    {
-        //        string helpKeyword = helpProvider1.GetHelpKeyword(this);
-        //        if (!string.IsNullOrEmpty(helpKeyword))
-        //        {
-        //            // Показываем раздел справки по нажатию F1
-        //            Help.ShowHelp(this, helpProvider1.HelpNamespace, HelpNavigator.Topic, helpKeyword);
-        //        }
-        //        return true;
-        //    }
-        //    return base.ProcessCmdKey(ref msg, keyData);
-        //}
-
-        //private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    TabPage selectedTab = tabControl1.SelectedTab;
-
-        //    switch (selectedTab.Name)
-        //    {
-        //        case "tabPage3":
-        //            helpProvider1.SetHelpKeyword(this, "56"); 
-        //            break;
-        //        case "tabPage2":
-        //            helpProvider1.SetHelpKeyword(this, "51"); 
-        //            break;
-        //        case "tabPage1":
-        //            helpProvider1.SetHelpKeyword(this, "20");
-        //            break;
-        //        default:
-        //            helpProvider1.SetHelpKeyword(this, "");
-        //            break;
-        //    }
-        //}
 
         public TabPage GetTabPagePlans() => tabPage1;
 
